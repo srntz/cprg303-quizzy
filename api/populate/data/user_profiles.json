@@ -1,0 +1,30 @@
+[
+    {
+      "id": 1,
+      "username": "QuizMaster",
+      "avatar": "https://example.com/avatar1.png",
+      "email": "user1@example.com",
+      "country": "Canada",
+      "quizzes_played": [
+        {
+          "quiz_id": 1,
+          "category_id": 1,
+          "completion_date": "2024-01-01T12:00:00Z",
+          "total_score": 80,
+          "score_breakdown": [
+            {"question_id": 1, "score": 10},
+            {"question_id": 2, "score": 20}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "username": "TriviaExpert",
+      "avatar": "https://example.com/avatar2.png",
+      "email": "user2@example.com",
+      "country": "USA",
+      "quizzes_played": []
+    }
+  ]
+  

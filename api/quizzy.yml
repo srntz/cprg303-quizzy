@@ -1,0 +1,312 @@
+openapi: 3.0.0
+info:
+  title: Quiz App API
+  description: API specification for the Quiz Application
+  version: 1.0.0
+servers:
+  - url: https://us-central1-cprg-303-quizzy-app.cloudfunctions.net/api
+    description: Production server
+
+paths:
+  /login:
+    post:
+      tags:
+        - Authentication
+      summary: User Login
+      description: Allow users to log in with their email.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '401':
+          description: Invalid credentials
+        '500':
+          description: Server error
+
+  /user-profile:
+    get:
+      tags:
+        - User
+      summary: Get User Profile
+      description: Retrieve user profile details and their quiz history.
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The ID of the user whose profile is requested.
+      responses:
+        '200':
+          description: User profile details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        '404':
+          description: User not found
+        '500':
+          description: Server error
+
+  /quiz-categories:
+    get:
+      tags:
+        - Quiz
+      summary: Get Quiz Categories
+      description: Retrieve a list of available quiz categories.
+      responses:
+        '200':
+          description: List of quiz categories
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuizCategories'
+        '500':
+          description: Server error
+
+  /questions:
+    get:
+      tags:
+        - Quiz
+      summary: Get Questions
+      description: Retrieve questions for a specific quiz category.
+      parameters:
+        - name: categoryId
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The ID of the category to retrieve questions for.
+      responses:
+        '200':
+          description: List of questions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Questions'
+        '404':
+          description: No questions found for the given category
+        '500':
+          description: Server error
+
+  /leaderboards:
+    get:
+      tags:
+        - Leaderboards
+      summary: Get Global Leaderboards
+      description: Retrieve global leaderboards by quiz category.
+      responses:
+        '200':
+          description: Leaderboards data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Leaderboards'
+        '500':
+          description: Server error
+
+  /popular-quizzes:
+    get:
+      tags:
+        - Quiz
+      summary: Get Popular Quizzes
+      description: Retrieve a list of the most popular quizzes.
+      responses:
+        '200':
+          description: List of popular quizzes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuizList'
+        '500':
+          description: Server error
+
+  /quizzes-by-category:
+    get:
+      tags:
+        - Quiz
+      summary: Get Quizzes by Category
+      description: Retrieve all quizzes for a specific category.
+      parameters:
+        - name: categoryId
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The ID of the category to retrieve quizzes for.
+      responses:
+        '200':
+          description: List of quizzes for the given category
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuizList'
+        '404':
+          description: No quizzes found for the given category
+        '500':
+          description: Server error
+
+components:
+  schemas:
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+
+    LoginResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique ID of the user.
+        email:
+          type: string
+          format: email
+          description: The email of the user.
+
+    UserProfile:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique ID of the user.
+        username:
+          type: string
+          description: The username of the user.
+        avatar:
+          type: string
+          format: uri
+          description: URL of the user's avatar image.
+        email:
+          type: string
+          format: email
+        country:
+          type: string
+        quizzes_played:
+          type: array
+          items:
+            type: object
+            properties:
+              quiz_id:
+                type: string
+              category_id:
+                type: string
+              completion_date:
+                type: string
+                format: date-time
+              total_score:
+                type: integer
+              score_breakdown:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    question_id:
+                      type: string
+                    score:
+                      type: integer
+
+    QuizCategory:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+
+    QuizCategories:
+      type: array
+      items:
+        $ref: '#/components/schemas/QuizCategory'
+
+    Questions:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          question_id:
+            type: string
+          question_text:
+            type: string
+          answers:
+            type: array
+            items:
+              type: object
+              properties:
+                option:
+                  type: string
+                is_correct:
+                  type: boolean
+
+    Leaderboards:
+      type: array
+      items:
+        type: object
+        properties:
+          category:
+            type: string
+          top_players:
+            type: array
+            items:
+              type: object
+              properties:
+                username:
+                  type: string
+                rank:
+                  type: integer
+                score:
+                  type: integer
+
+    Quiz:
+      type: object
+      properties:
+        id:
+          type: string
+        image_url:
+          type: string
+          format: uri
+        category:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+        play_count:
+          type: integer
+        questions:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              question_text:
+                type: string
+              answers:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    option:
+                      type: string
+                    is_correct:
+                      type: boolean
+
+    QuizList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Quiz'
