@@ -1,5 +1,6 @@
 import { View, Text } from "react-native";
 import { Colors } from "@/constants/Colors";
+import { Link } from "expo-router";
 
 export default function HomeScreen() {
   return (
