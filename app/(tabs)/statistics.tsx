@@ -1,7 +1,7 @@
-import { View, Text } from "react-native";
+import { Text, View } from "react-native";
 import { Colors } from "@/constants/Colors";
 
-export default function HomeScreen() {
+export default function SearchScreen() {
   return (
     <View
       style={{
@@ -11,7 +11,7 @@ export default function HomeScreen() {
         alignItems: "center",
       }}
     >
-      <Text style={{ fontFamily: "Rubik_600SemiBold", color: "white" }}>Home Page</Text>
+      <Text style={{ fontFamily: "Rubik_600SemiBold", color: "white" }}>Statistics Page</Text>
     </View>
   );
 }

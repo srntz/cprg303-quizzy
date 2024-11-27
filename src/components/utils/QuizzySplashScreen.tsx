@@ -1,12 +1,13 @@
 import React from "react";
 import { View, Text } from "react-native";
+import { Colors } from "@/constants/Colors";
 
 export default function QuizzySplashScreen({ ready }: { ready: boolean }) {
   return (
     <View
       style={{
         flex: 1,
-        backgroundColor: "#6A5AE0",
+        backgroundColor: Colors.light.accent,
         justifyContent: "center",
         alignItems: "center",
       }}
