@@ -10,7 +10,7 @@ export default function ProfileUsername({
   imageUrl: string;
 }) {
   return (
-    <View>
+    <View style={styles.container}>
       <ProfileImage imageUrl={imageUrl} />
       <Text style={styles.username}>{username}</Text>
     </View>
@@ -18,10 +18,13 @@ export default function ProfileUsername({
 }
 
 const styles = StyleSheet.create({
+  container: {
+    paddingVertical: 5,
+  },
   username: {
     textAlign: "center",
-    fontSize: 20,
+    fontSize: 14,
     fontWeight: "500",
-    marginTop: 15,
+    marginTop: 10,
   },
 });

@@ -1,15 +1,21 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, ViewStyle } from "react-native";
+import { StyleSheet, TouchableOpacity, ViewStyle, View } from "react-native";
 
 export default function CardContainer({
   onPress,
   children,
   style,
+  disabled = false,
 }: {
-  onPress: () => void;
+  onPress?: () => void;
   children: React.ReactNode;
   style?: ViewStyle;
+  disabled?: boolean;
 }) {
+  if (disabled) {
+    return <View style={[styles.card, style]}>{children}</View>;
+  }
+
   return (
     <TouchableOpacity style={[styles.card, style]} onPress={onPress}>
       {children}

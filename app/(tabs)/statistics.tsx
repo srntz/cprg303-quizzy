@@ -1,5 +1,9 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { Colors } from "@/constants/Colors";
+import QuestionCard from "@/src/components/card/QuestionCard";
+import AnswerCard from "@/src/components/card/AnswerCard";
+import LeadCategory from "@/src/components/leaderboard/LeadCategory";
+import TopUsers from "@/src/components/leaderboard/TopUsers";
 
 export default function SearchScreen() {
   return (
@@ -11,7 +15,12 @@ export default function SearchScreen() {
         alignItems: "center",
       }}
     >
-      <Text style={{ fontFamily: "Rubik_600SemiBold", color: "white" }}>Statistics Page</Text>
+      <QuestionCard question="What is the capital of France?" />
+      <AnswerCard answerOption="A" answer="Paris" />
+
+      <LeadCategory leadCategory="Math" />
+      <TopUsers />
+      <LeadCategory leadCategory="Science" />
     </View>
   );
 }
