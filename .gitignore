@@ -38,3 +38,4 @@ yarn-error.*
 app-example
 
 .idea
+api/populate/service-account-file.json

@@ -1,0 +1,11 @@
+[
+    {
+      "id": "leaderboard1",
+      "category": "Science",
+      "top_players": [
+        { "username": "UserOne", "rank": 1, "score": 80 },
+        { "username": "UserTwo", "rank": 2, "score": 60 }
+      ]
+    }
+  ]
+  
