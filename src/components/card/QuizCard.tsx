@@ -15,7 +15,7 @@ export default function QuizCard({
   imageUrl: string;
   onPress: () => void;
   category: string;
-  numberOfQuestions: string;
+  numberOfQuestions: 12;
 }) {
   return (
     <CardContainer onPress={onPress} style={styles.cardContainer}>
@@ -23,7 +23,7 @@ export default function QuizCard({
       <View style={styles.infoContainer}>
         <CardTitle cardTitle={title} />
         <Text style={styles.details}>
-          {category} | {numberOfQuestions}
+          {category} | {numberOfQuestions} Questions
         </Text>
       </View>
     </CardContainer>
