@@ -1,5 +1,7 @@
 import { Text, View } from "react-native";
 import { Colors } from "@/constants/Colors";
+import QuestionContainer from "@/src/components/card/QuestionContainer";
+import AnswerContainer from "@/src/components/card/AnswerContainer";
 
 export default function SearchScreen() {
   return (
@@ -11,7 +13,9 @@ export default function SearchScreen() {
         alignItems: "center",
       }}
     >
-      <Text style={{ fontFamily: "Rubik_600SemiBold", color: "white" }}>Statistics Page</Text>
+      {/* <Text style={{ fontFamily: "Rubik_600SemiBold", color: "white" }}>Statistics Page</Text> */}
+      <QuestionContainer question="What is the capital of France?" />
+      <AnswerContainer answerOption="A" answer="Paris" />
     </View>
   );
 }

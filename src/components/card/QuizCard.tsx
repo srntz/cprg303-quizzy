@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import CardTitle from "../title/CardTitle";
+import CardTitle from "../text/CardTitle";
 import CardContainer from "./CardContainer";
 import CardImage from "./CardImage";
 
