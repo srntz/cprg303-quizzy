@@ -8,6 +8,7 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 import { useFonts } from "@expo-google-fonts/rubik";
 import { Rubik_600SemiBold } from "@expo-google-fonts/rubik";
 import QuizzySplashScreen from "@/src/components/utils/QuizzySplashScreen";
+import React from "react";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -36,7 +37,8 @@ export default function RootLayout() {
     return (
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name={"login"} options={{ headerShown: false }} />
+          <Stack.Screen name={"screens"} options={{ headerShown: false }} />
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>
