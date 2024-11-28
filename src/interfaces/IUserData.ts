@@ -3,7 +3,7 @@ interface IScoreBreakdown {
   score: number;
 }
 
-interface IQuizzesPlayed {
+export interface IQuizzesPlayed {
   quiz_id: string;
   category_id: string;
   completion_date: string;
@@ -12,7 +12,7 @@ interface IQuizzesPlayed {
 }
 
 export interface IUserData {
-  id: number;
+  id: string;
   username: string;
   email: string;
   country: string;

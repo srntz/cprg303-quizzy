@@ -3,11 +3,18 @@ import StatusBarMarginLayout from "@/src/components/utils/StatusBarMarginLayout"
 import { Colors } from "@/constants/Colors";
 import { useRouter } from "expo-router";
 import { useAuthenticationContext } from "@/src/context/AuthenticationContext";
-import { AuthenticationApi } from "@/api/generated";
+import { AuthenticationApi, UserApi } from "@/api/generated";
 import { useState } from "react";
+import { IQuizzesPlayed, IUserData } from "@/src/interfaces/IUserData";
+
+interface ILoginData {
+  id: string;
+  email: string;
+}
 
 export default function LoginPage() {
   const authApi = new AuthenticationApi();
+  const userApi = new UserApi();
 
   const router = useRouter();
   const { setCurrentUser } = useAuthenticationContext();
@@ -19,14 +26,28 @@ export default function LoginPage() {
   });
 
   async function handleLogin() {
-    // const login = await authApi.loginPost({ email: formState.email, password: "gdfgjd" });
-    if (formState.email == "denis@gmail.com" && formState.password == "password") {
-      router.replace("/screens");
-    } else {
+    let login;
+    try {
+      login = await authApi.loginPost({ email: formState.email });
+    } catch (e) {
       setFormState((prev) => {
         return { ...prev, error: true };
       });
+      setCurrentUser(undefined);
+      return;
     }
+
+    const userData = await userApi.userProfileGet((login.data as ILoginData).id);
+    const userObject: IUserData = {
+      email: userData.data.email as string,
+      id: userData.data.id as string,
+      quizzes_played: userData.data.quizzes_played as IQuizzesPlayed[],
+      username: "placeholder username",
+      country: "placeholder country",
+    };
+
+    setCurrentUser(userObject);
+    router.replace("/screens");
   }
 
   return (
