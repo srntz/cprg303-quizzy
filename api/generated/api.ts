@@ -26,6 +26,19 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
 /**
  * 
  * @export
+ * @interface ErrorResponse
+ */
+export interface ErrorResponse {
+    /**
+     * A description of the error.
+     * @type {string}
+     * @memberof ErrorResponse
+     */
+    'error'?: string;
+}
+/**
+ * 
+ * @export
  * @interface LeaderboardsInner
  */
 export interface LeaderboardsInner {
