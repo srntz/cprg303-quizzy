@@ -19,7 +19,7 @@ export default function SearchScreen() {
       <CategoryCard
         categoryName="Japanese Food"
         onPress={handlePress}
-        numberOfQuestions="12 Questions"
+        numberOfQuestions={12}
         imageUrl="https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca"
       />
     </View>

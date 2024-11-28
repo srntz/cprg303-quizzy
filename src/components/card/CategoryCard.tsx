@@ -13,14 +13,14 @@ export default function CategoryCard({
   categoryName: string;
   imageUrl: string;
   onPress: () => void;
-  numberOfQuestions: string;
+  numberOfQuestions: number;
 }) {
   return (
     <CardContainer onPress={onPress}>
       <CardImage imageUrl={imageUrl} />
       <View style={styles.infoContainer}>
         <CardTitle cardTitle={categoryName} />
-        <Text style={styles.details}>{numberOfQuestions}</Text>
+        <Text style={styles.details}>{numberOfQuestions} Questions</Text>
       </View>
     </CardContainer>
   );

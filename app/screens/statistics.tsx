@@ -4,6 +4,7 @@ import QuestionCard from "@/src/components/card/QuestionCard";
 import AnswerCard from "@/src/components/card/AnswerCard";
 import LeadCategory from "@/src/components/leaderboard/LeadCategory";
 import TopUsers from "@/src/components/leaderboard/TopUsers";
+import User from "@/src/components/leaderboard/User";
 
 export default function SearchScreen() {
   return (
@@ -21,6 +22,7 @@ export default function SearchScreen() {
       <LeadCategory leadCategory="Math" />
       <TopUsers />
       <LeadCategory leadCategory="Science" />
+      <User userName="John Doe" points={2569} />
     </View>
   );
 }

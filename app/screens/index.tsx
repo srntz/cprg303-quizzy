@@ -21,7 +21,7 @@ export default function HomeScreen() {
         imageUrl={"https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca"}
         onPress={handlePress}
         category={"Math"}
-        numberOfQuestions={"12 Questions"}
+        numberOfQuestions={12}
       />
     </View>
   );
