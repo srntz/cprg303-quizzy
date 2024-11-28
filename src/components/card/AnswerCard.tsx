@@ -2,7 +2,7 @@ import React from "react";
 import CardContainer from "./CardContainer";
 import { StyleSheet, Text } from "react-native";
 
-export default function AnswerContainer({
+export default function AnswerCard({
   answer,
   answerOption,
 }: {

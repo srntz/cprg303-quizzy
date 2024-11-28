@@ -2,7 +2,7 @@ import React from "react";
 import CardContainer from "./CardContainer";
 import { StyleSheet, Text } from "react-native";
 
-export default function QuestionContainer({ question }: { question: string }) {
+export default function QuestionCard({ question }: { question: string }) {
   return (
     <CardContainer style={styles.container} disabled={true}>
       <Text style={styles.question}>{question}</Text>

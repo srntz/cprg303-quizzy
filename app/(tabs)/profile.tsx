@@ -1,5 +1,7 @@
 import { Text, View } from "react-native";
 import { Colors } from "@/constants/Colors";
+import ProfileUsername from "@/src/components/profile/ProfileUsername";
+import ProfileImage from "@/src/components/profile/ProfileImage";
 
 export default function SearchScreen() {
   return (
@@ -11,7 +13,11 @@ export default function SearchScreen() {
         alignItems: "center",
       }}
     >
-      <Text style={{ fontFamily: "Rubik_600SemiBold", color: "white" }}>Profile Page</Text>
+      <ProfileImage imageUrl="https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca" />
+      <ProfileUsername
+        imageUrl="https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca"
+        username="John Doe"
+      />
     </View>
   );
 }
