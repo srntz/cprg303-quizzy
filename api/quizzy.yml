@@ -39,6 +39,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        default:
+          description: Default error
+          content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+          
 
   /user-profile:
     get:
