@@ -13,9 +13,9 @@ export default function QuizCard({
 }: {
   title: string;
   imageUrl: string;
-  onPress: () => void;
+  onPress?: () => void;
   category: string;
-  numberOfQuestions: 12;
+  numberOfQuestions: number;
 }) {
   return (
     <CardContainer onPress={onPress} style={styles.cardContainer}>
@@ -40,9 +40,10 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     justifyContent: "center",
+    flexShrink: 1,
   },
   details: {
-    fontSize: 14,
+    fontSize: 12,
     color: "gray",
   },
 });
