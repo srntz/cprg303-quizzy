@@ -32,10 +32,11 @@ export default function HomeScreen() {
         </View>
         <TouchableOpacity onPress={handlePress}>
           <Image
-            src="https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca"
+            source={{
+              uri: "https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca",
+            }}
             alt="start quiz"
-            width={60}
-            style={{ borderRadius: 50 }}
+            style={{ width: 70, height: 70, borderRadius: 50 }}
           />
         </TouchableOpacity>
       </View>
