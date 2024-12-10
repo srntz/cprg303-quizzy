@@ -14,9 +14,7 @@ export default function SectionTitle({
 const styles = StyleSheet.create({
   text: {
     fontSize: 20,
-    fontWeight: "600",
-    // marginHorizontal: 10,
-    // marginTop: 20,
-    // marginBottom: 10,
+    fontWeight: "700",
+    marginBottom: 10,
   },
 });

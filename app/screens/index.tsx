@@ -2,7 +2,7 @@ import { Colors } from "@/constants/Colors";
 import QuizCard from "@/src/components/card/QuizCard";
 import ProfileImage from "@/src/components/profile/ProfileImage";
 import SectionTitle from "@/src/components/text/SectionTitle";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, Touchable, TouchableOpacity, View } from "react-native";
 
 export default function HomeScreen() {
   const handlePress = () => {
@@ -14,9 +14,8 @@ export default function HomeScreen() {
       style={{
         flex: 1,
         backgroundColor: Colors.light.accent,
-        justifyContent: "flex-end",
+        justifyContent: "space-between",
         alignItems: "center",
-        position: "relative",
       }}
     >
       <View style={styles.mainContainer}>
@@ -26,7 +25,34 @@ export default function HomeScreen() {
         </View>
         <ProfileImage imageUrl="https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca" />
       </View>
-      <View></View>
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          width: "80%",
+          backgroundColor: "#FFCCD5",
+          padding: 20,
+          borderRadius: 20,
+          marginBottom: 40,
+        }}
+      >
+        <View style={{}}>
+          <Text style={{ color: "#db7185", fontWeight: "500", marginBottom: 5 }}>QUICK QUIZ</Text>
+          <Text style={{ color: "#660012", fontWeight: "600", fontSize: 18 }}>
+            Start Random Quiz
+          </Text>
+        </View>
+        <TouchableOpacity onPress={handlePress}>
+          <img
+            src="https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca"
+            alt="start quiz"
+            width={60}
+            style={{ borderRadius: 50 }}
+          />
+        </TouchableOpacity>
+      </View>
       <View style={styles.quizContainer}>
         <ScrollView style={styles.scrollView}>
           <SectionTitle sectionTitle="Most Popular" />
@@ -77,8 +103,6 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     width: "100%",
-    position: "absolute",
-    top: 0,
     paddingVertical: 30,
     paddingHorizontal: 20,
     display: "flex",
@@ -87,7 +111,7 @@ const styles = StyleSheet.create({
   },
   quizContainer: {
     width: "100%",
-    height: "65%",
+    height: "70%",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     backgroundColor: "white",

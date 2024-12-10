@@ -26,7 +26,8 @@ export default function CardContainer({
 const styles = StyleSheet.create({
   card: {
     backgroundColor: "white",
-    padding: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     marginVertical: 10,
     borderRadius: 10,
     shadowColor: "#000",
