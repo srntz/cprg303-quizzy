@@ -1,11 +1,82 @@
 [
-    {
+  {
       "id": "category1",
       "name": "Science"
-    },
-    {
+  },
+  {
       "id": "category2",
       "name": "History"
-    }
-  ]
-  
+  },
+  {
+      "id": "category3",
+      "name": "Technology"
+  },
+  {
+      "id": "category4",
+      "name": "Art"
+  },
+  {
+      "id": "category5",
+      "name": "Sports"
+  },
+  {
+      "id": "category6",
+      "name": "Music"
+  },
+  {
+      "id": "category7",
+      "name": "Literature"
+  },
+  {
+      "id": "category8",
+      "name": "Travel"
+  },
+  {
+      "id": "category9",
+      "name": "Food"
+  },
+  {
+      "id": "category10",
+      "name": "Health"
+  },
+  {
+      "id": "category11",
+      "name": "Education"
+  },
+  {
+      "id": "category12",
+      "name": "Business"
+  },
+  {
+      "id": "category13",
+      "name": "Environment"
+  },
+  {
+      "id": "category14",
+      "name": "Philosophy"
+  },
+  {
+      "id": "category15",
+      "name": "Psychology"
+  },
+  {
+      "id": "category16",
+      "name": "Politics"
+  },
+  {
+      "id": "category17",
+      "name": "Gaming"
+  },
+  {
+      "id": "category18",
+      "name": "Movies"
+  },
+  {
+      "id": "category19",
+      "name": "Fashion"
+  },
+  {
+      "id": "category20",
+      "name": "Fitness"
+  }
+]

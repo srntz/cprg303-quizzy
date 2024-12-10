@@ -1,21 +1,1102 @@
 [
     {
-      "id": "question1",
-      "category_id": "category1",
-      "question_text": "What is the boiling point of water?",
-      "answers": [
-        { "option": "100°C", "is_correct": true },
-        { "option": "90°C", "is_correct": false }
-      ]
+        "id": "q1",
+        "category_id": "category2",
+        "question_text": "Who was the first president of the United States?",
+        "answers": [
+            { "option": "George Washington", "is_correct": true },
+            { "option": "Thomas Jefferson", "is_correct": false },
+            { "option": "Abraham Lincoln", "is_correct": false },
+            { "option": "John Adams", "is_correct": false }
+        ]
     },
     {
-      "id": "question2",
-      "category_id": "category2",
-      "question_text": "Who was the first president of the United States?",
-      "answers": [
-        { "option": "George Washington", "is_correct": true },
-        { "option": "Abraham Lincoln", "is_correct": false }
-      ]
+        "id": "q2",
+        "category_id": "category2",
+        "question_text": "What year did World War II end?",
+        "answers": [
+            { "option": "1945", "is_correct": true },
+            { "option": "1941", "is_correct": false },
+            { "option": "1939", "is_correct": false },
+            { "option": "1950", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q3",
+        "category_id": "category2",
+        "question_text": "What was the name of the ship that carried the Pilgrims to America?",
+        "answers": [
+            { "option": "Mayflower", "is_correct": true },
+            { "option": "Santa Maria", "is_correct": false },
+            { "option": "Endeavour", "is_correct": false },
+            { "option": "Victory", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q4",
+        "category_id": "category2",
+        "question_text": "What year was the Declaration of Independence signed?",
+        "answers": [
+            { "option": "1776", "is_correct": true },
+            { "option": "1781", "is_correct": false },
+            { "option": "1775", "is_correct": false },
+            { "option": "1783", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q5",
+        "category_id": "category2",
+        "question_text": "Who was the leader of the Soviet Union during World War II?",
+        "answers": [
+            { "option": "Joseph Stalin", "is_correct": true },
+            { "option": "Vladimir Lenin", "is_correct": false },
+            { "option": "Leon Trotsky", "is_correct": false },
+            { "option": "Nikita Khrushchev", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q6",
+        "category_id": "category2",
+        "question_text": "What empire was ruled by Julius Caesar?",
+        "answers": [
+            { "option": "Roman Empire", "is_correct": true },
+            { "option": "Byzantine Empire", "is_correct": false },
+            { "option": "Holy Roman Empire", "is_correct": false },
+            { "option": "Ottoman Empire", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q7",
+        "category_id": "category2",
+        "question_text": "What event started World War I?",
+        "answers": [
+            { "option": "Assassination of Archduke Franz Ferdinand", "is_correct": true },
+            { "option": "Treaty of Versailles", "is_correct": false },
+            { "option": "Invasion of Poland", "is_correct": false },
+            { "option": "Attack on Pearl Harbor", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q8",
+        "category_id": "category1",
+        "question_text": "What planet is known as the Red Planet?",
+        "answers": [
+            { "option": "Mars", "is_correct": true },
+            { "option": "Venus", "is_correct": false },
+            { "option": "Mercury", "is_correct": false },
+            { "option": "Jupiter", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q9",
+        "category_id": "category1",
+        "question_text": "What is the largest planet in our solar system?",
+        "answers": [
+            { "option": "Jupiter", "is_correct": true },
+            { "option": "Saturn", "is_correct": false },
+            { "option": "Earth", "is_correct": false },
+            { "option": "Neptune", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q10",
+        "category_id": "category1",
+        "question_text": "What galaxy do we live in?",
+        "answers": [
+            { "option": "Milky Way", "is_correct": true },
+            { "option": "Andromeda", "is_correct": false },
+            { "option": "Sombrero Galaxy", "is_correct": false },
+            { "option": "Whirlpool Galaxy", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q11",
+        "category_id": "category1",
+        "question_text": "What is the powerhouse of the cell?",
+        "answers": [
+            { "option": "Mitochondria", "is_correct": true },
+            { "option": "Nucleus", "is_correct": false },
+            { "option": "Ribosome", "is_correct": false },
+            { "option": "Chloroplast", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q12",
+        "category_id": "category1",
+        "question_text": "What is the process plants use to convert sunlight into energy?",
+        "answers": [
+            { "option": "Photosynthesis", "is_correct": true },
+            { "option": "Respiration", "is_correct": false },
+            { "option": "Fermentation", "is_correct": false },
+            { "option": "Osmosis", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q13",
+        "category_id": "category1",
+        "question_text": "What is Newton's First Law of Motion?",
+        "answers": [
+            { "option": "An object at rest stays at rest unless acted upon by a force.", "is_correct": true },
+            { "option": "Force equals mass times acceleration.", "is_correct": false },
+            { "option": "For every action, there is an equal and opposite reaction.", "is_correct": false },
+            { "option": "Energy cannot be created or destroyed.", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q14",
+        "category_id": "category1",
+        "question_text": "What is the term for a planet outside our solar system?",
+        "answers": [
+            { "option": "Exoplanet", "is_correct": true },
+            { "option": "Dwarf Planet", "is_correct": false },
+            { "option": "Gas Giant", "is_correct": false },
+            { "option": "Moon", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q15",
+        "category_id": "category1",
+        "question_text": "What is the closest star to Earth?",
+        "answers": [
+            { "option": "Sun", "is_correct": true },
+            { "option": "Alpha Centauri", "is_correct": false },
+            { "option": "Sirius", "is_correct": false },
+            { "option": "Proxima Centauri", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q16",
+        "category_id": "category1",
+        "question_text": "What is the name of Earth's natural satellite?",
+        "answers": [
+            { "option": "Moon", "is_correct": true },
+            { "option": "Mars", "is_correct": false },
+            { "option": "Venus", "is_correct": false },
+            { "option": "Titan", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q17",
+        "category_id": "category1",
+        "question_text": "What is the Great Red Spot on Jupiter?",
+        "answers": [
+            { "option": "A giant storm", "is_correct": true },
+            { "option": "A volcano", "is_correct": false },
+            { "option": "An ocean", "is_correct": false },
+            { "option": "A magnetic field", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q18",
+        "category_id": "category1",
+        "question_text": "What gas do plants absorb during photosynthesis?",
+        "answers": [
+            { "option": "Carbon Dioxide", "is_correct": true },
+            { "option": "Oxygen", "is_correct": false },
+            { "option": "Nitrogen", "is_correct": false },
+            { "option": "Hydrogen", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q19",
+        "category_id": "category1",
+        "question_text": "What is the term for the path of a celestial object around a star or planet?",
+        "answers": [
+            { "option": "Orbit", "is_correct": true },
+            { "option": "Trajectory", "is_correct": false },
+            { "option": "Axis", "is_correct": false },
+            { "option": "Plane", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q20",
+        "category_id": "category1",
+        "question_text": "What is the smallest planet in our solar system?",
+        "answers": [
+            { "option": "Mercury", "is_correct": true },
+            { "option": "Mars", "is_correct": false },
+            { "option": "Venus", "is_correct": false },
+            { "option": "Pluto", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q21",
+        "category_id": "category1",
+        "question_text": "What is the basic unit of life?",
+        "answers": [
+            { "option": "Cell", "is_correct": true },
+            { "option": "Atom", "is_correct": false },
+            { "option": "Molecule", "is_correct": false },
+            { "option": "Organ", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q22",
+        "category_id": "category1",
+        "question_text": "Which organelle is responsible for photosynthesis in plants?",
+        "answers": [
+            { "option": "Chloroplast", "is_correct": true },
+            { "option": "Mitochondria", "is_correct": false },
+            { "option": "Ribosome", "is_correct": false },
+            { "option": "Nucleus", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q23",
+        "category_id": "category1",
+        "question_text": "What type of blood cells help fight infections?",
+        "answers": [
+            { "option": "White Blood Cells", "is_correct": true },
+            { "option": "Red Blood Cells", "is_correct": false },
+            { "option": "Platelets", "is_correct": false },
+            { "option": "Plasma", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q24",
+        "category_id": "category1",
+        "question_text": "What is the name of the molecule that carries genetic information?",
+        "answers": [
+            { "option": "DNA", "is_correct": true },
+            { "option": "RNA", "is_correct": false },
+            { "option": "Protein", "is_correct": false },
+            { "option": "Enzyme", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q25",
+        "category_id": "category1",
+        "question_text": "Which organ pumps blood through the body?",
+        "answers": [
+            { "option": "Heart", "is_correct": true },
+            { "option": "Lungs", "is_correct": false },
+            { "option": "Kidney", "is_correct": false },
+            { "option": "Liver", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q26",
+        "category_id": "category1",
+        "question_text": "What is the function of red blood cells?",
+        "answers": [
+            { "option": "Transport oxygen", "is_correct": true },
+            { "option": "Fight infections", "is_correct": false },
+            { "option": "Clot blood", "is_correct": false },
+            { "option": "Store nutrients", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q27",
+        "category_id": "category1",
+        "question_text": "What is the name of the tissue that connects bones to muscles?",
+        "answers": [
+            { "option": "Tendon", "is_correct": true },
+            { "option": "Ligament", "is_correct": false },
+            { "option": "Cartilage", "is_correct": false },
+            { "option": "Fascia", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q28",
+        "category_id": "category1",
+        "question_text": "What type of energy is stored in food?",
+        "answers": [
+            { "option": "Chemical energy", "is_correct": true },
+            { "option": "Kinetic energy", "is_correct": false },
+            { "option": "Thermal energy", "is_correct": false },
+            { "option": "Mechanical energy", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q29",
+        "category_id": "category1",
+        "question_text": "What is Newton's Second Law of Motion?",
+        "answers": [
+            { "option": "Force equals mass times acceleration", "is_correct": true },
+            { "option": "An object at rest stays at rest", "is_correct": false },
+            { "option": "Energy cannot be created or destroyed", "is_correct": false },
+            { "option": "For every action, there is an equal and opposite reaction", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q30",
+        "category_id": "category1",
+        "question_text": "What is the speed of light in a vacuum?",
+        "answers": [
+            { "option": "299,792 km/s", "is_correct": true },
+            { "option": "150,000 km/s", "is_correct": false },
+            { "option": "1,000,000 km/s", "is_correct": false },
+            { "option": "300,000 km/s", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q31",
+        "category_id": "category1",
+        "question_text": "What is the formula for force?",
+        "answers": [
+            { "option": "F = ma", "is_correct": true },
+            { "option": "F = mv", "is_correct": false },
+            { "option": "F = mgh", "is_correct": false },
+            { "option": "F = v/t", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q32",
+        "category_id": "category1",
+        "question_text": "What is the SI unit of force?",
+        "answers": [
+            { "option": "Newton", "is_correct": true },
+            { "option": "Joule", "is_correct": false },
+            { "option": "Pascal", "is_correct": false },
+            { "option": "Watt", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q33",
+        "category_id": "category1",
+        "question_text": "What is the acceleration due to gravity on Earth?",
+        "answers": [
+            { "option": "9.8 m/s²", "is_correct": true },
+            { "option": "10 m/s²", "is_correct": false },
+            { "option": "8.9 m/s²", "is_correct": false },
+            { "option": "9.1 m/s²", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q34",
+        "category_id": "category1",
+        "question_text": "What is the term for stored energy?",
+        "answers": [
+            { "option": "Potential energy", "is_correct": true },
+            { "option": "Kinetic energy", "is_correct": false },
+            { "option": "Thermal energy", "is_correct": false },
+            { "option": "Mechanical energy", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q35",
+        "category_id": "category1",
+        "question_text": "What is the primary source of energy for life on Earth?",
+        "answers": [
+            { "option": "The Sun", "is_correct": true },
+            { "option": "The Moon", "is_correct": false },
+            { "option": "Earth's core", "is_correct": false },
+            { "option": "Volcanoes", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q36",
+        "category_id": "category1",
+        "question_text": "What is the SI unit of power?",
+        "answers": [
+            { "option": "Watt", "is_correct": true },
+            { "option": "Joule", "is_correct": false },
+            { "option": "Newton", "is_correct": false },
+            { "option": "Pascal", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q37",
+        "category_id": "category1",
+        "question_text": "What is the term for heat transfer through direct contact?",
+        "answers": [
+            { "option": "Conduction", "is_correct": true },
+            { "option": "Convection", "is_correct": false },
+            { "option": "Radiation", "is_correct": false },
+            { "option": "Diffusion", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q38",
+        "category_id": "category1",
+        "question_text": "What is the device used to measure electric current?",
+        "answers": [
+            { "option": "Ammeter", "is_correct": true },
+            { "option": "Voltmeter", "is_correct": false },
+            { "option": "Ohmmeter", "is_correct": false },
+            { "option": "Thermometer", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q39",
+        "category_id": "category1",
+        "question_text": "What type of wave is sound?",
+        "answers": [
+            { "option": "Longitudinal wave", "is_correct": true },
+            { "option": "Transverse wave", "is_correct": false },
+            { "option": "Electromagnetic wave", "is_correct": false },
+            { "option": "Surface wave", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q40",
+        "category_id": "category1",
+        "question_text": "What is the term for the bending of light as it passes through different mediums?",
+        "answers": [
+            { "option": "Refraction", "is_correct": true },
+            { "option": "Reflection", "is_correct": false },
+            { "option": "Diffraction", "is_correct": false },
+            { "option": "Interference", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q41",
+        "category_id": "category3",
+        "question_text": "What is the capital of Australia?",
+        "answers": [
+            { "option": "Canberra", "is_correct": true },
+            { "option": "Sydney", "is_correct": false },
+            { "option": "Melbourne", "is_correct": false },
+            { "option": "Brisbane", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q42",
+        "category_id": "category3",
+        "question_text": "Which continent has the most countries?",
+        "answers": [
+            { "option": "Africa", "is_correct": true },
+            { "option": "Asia", "is_correct": false },
+            { "option": "Europe", "is_correct": false },
+            { "option": "South America", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q43",
+        "category_id": "category3",
+        "question_text": "What is the longest river in the world?",
+        "answers": [
+            { "option": "Nile", "is_correct": true },
+            { "option": "Amazon", "is_correct": false },
+            { "option": "Yangtze", "is_correct": false },
+            { "option": "Mississippi", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q44",
+        "category_id": "category3",
+        "question_text": "Which desert is the largest in the world?",
+        "answers": [
+            { "option": "Sahara", "is_correct": true },
+            { "option": "Gobi", "is_correct": false },
+            { "option": "Kalahari", "is_correct": false },
+            { "option": "Arctic", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q45",
+        "category_id": "category3",
+        "question_text": "Which ocean is the largest?",
+        "answers": [
+            { "option": "Pacific", "is_correct": true },
+            { "option": "Atlantic", "is_correct": false },
+            { "option": "Indian", "is_correct": false },
+            { "option": "Southern", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q46",
+        "category_id": "category3",
+        "question_text": "What is the tallest mountain in the world?",
+        "answers": [
+            { "option": "Mount Everest", "is_correct": true },
+            { "option": "K2", "is_correct": false },
+            { "option": "Kangchenjunga", "is_correct": false },
+            { "option": "Lhotse", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q47",
+        "category_id": "category3",
+        "question_text": "Which country has the highest population?",
+        "answers": [
+            { "option": "China", "is_correct": true },
+            { "option": "India", "is_correct": false },
+            { "option": "USA", "is_correct": false },
+            { "option": "Indonesia", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q48",
+        "category_id": "category3",
+        "question_text": "What is the capital of Canada?",
+        "answers": [
+            { "option": "Ottawa", "is_correct": true },
+            { "option": "Toronto", "is_correct": false },
+            { "option": "Vancouver", "is_correct": false },
+            { "option": "Montreal", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q49",
+        "category_id": "category3",
+        "question_text": "Which country is known as the Land of the Rising Sun?",
+        "answers": [
+            { "option": "Japan", "is_correct": true },
+            { "option": "China", "is_correct": false },
+            { "option": "South Korea", "is_correct": false },
+            { "option": "Thailand", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q50",
+        "category_id": "category3",
+        "question_text": "What is the smallest country in the world?",
+        "answers": [
+            { "option": "Vatican City", "is_correct": true },
+            { "option": "Monaco", "is_correct": false },
+            { "option": "San Marino", "is_correct": false },
+            { "option": "Liechtenstein", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q51",
+        "category_id": "category4",
+        "question_text": "Which country won the FIFA World Cup in 2018?",
+        "answers": [
+            { "option": "France", "is_correct": true },
+            { "option": "Brazil", "is_correct": false },
+            { "option": "Germany", "is_correct": false },
+            { "option": "Argentina", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q52",
+        "category_id": "category4",
+        "question_text": "Which sport is known as 'The Gentleman's Game'?",
+        "answers": [
+            { "option": "Cricket", "is_correct": true },
+            { "option": "Tennis", "is_correct": false },
+            { "option": "Golf", "is_correct": false },
+            { "option": "Baseball", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q53",
+        "category_id": "category4",
+        "question_text": "What is the national sport of Canada?",
+        "answers": [
+            { "option": "Lacrosse", "is_correct": true },
+            { "option": "Ice Hockey", "is_correct": false },
+            { "option": "Basketball", "is_correct": false },
+            { "option": "Baseball", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q54",
+        "category_id": "category4",
+        "question_text": "How many players are there on a soccer team on the field?",
+        "answers": [
+            { "option": "11", "is_correct": true },
+            { "option": "10", "is_correct": false },
+            { "option": "12", "is_correct": false },
+            { "option": "9", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q55",
+        "category_id": "category4",
+        "question_text": "Which country hosted the Olympics in 2021?",
+        "answers": [
+            { "option": "Japan", "is_correct": true },
+            { "option": "USA", "is_correct": false },
+            { "option": "China", "is_correct": false },
+            { "option": "Brazil", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q56",
+        "category_id": "category4",
+        "question_text": "Which NBA player is known as 'His Airness'?",
+        "answers": [
+            { "option": "Michael Jordan", "is_correct": true },
+            { "option": "LeBron James", "is_correct": false },
+            { "option": "Kobe Bryant", "is_correct": false },
+            { "option": "Magic Johnson", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q57",
+        "category_id": "category4",
+        "question_text": "How many gold medals did Michael Phelps win in the 2008 Olympics?",
+        "answers": [
+            { "option": "8", "is_correct": true },
+            { "option": "7", "is_correct": false },
+            { "option": "9", "is_correct": false },
+            { "option": "6", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q58",
+        "category_id": "category4",
+        "question_text": "What sport does Roger Federer play?",
+        "answers": [
+            { "option": "Tennis", "is_correct": true },
+            { "option": "Badminton", "is_correct": false },
+            { "option": "Golf", "is_correct": false },
+            { "option": "Table Tennis", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q59",
+        "category_id": "category4",
+        "question_text": "Which country has won the most World Cups in soccer?",
+        "answers": [
+            { "option": "Brazil", "is_correct": true },
+            { "option": "Germany", "is_correct": false },
+            { "option": "Italy", "is_correct": false },
+            { "option": "Argentina", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q60",
+        "category_id": "category4",
+        "question_text": "What is the only sport to be played on the moon?",
+        "answers": [
+            { "option": "Golf", "is_correct": true },
+            { "option": "Baseball", "is_correct": false },
+            { "option": "Soccer", "is_correct": false },
+            { "option": "Tennis", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q61",
+        "category_id": "category5",
+        "question_text": "Who wrote 'Pride and Prejudice'?",
+        "answers": [
+            { "option": "Jane Austen", "is_correct": true },
+            { "option": "Charlotte Brontë", "is_correct": false },
+            { "option": "Emily Brontë", "is_correct": false },
+            { "option": "Mary Shelley", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q62",
+        "category_id": "category5",
+        "question_text": "Which novel begins with the line 'Call me Ishmael'?",
+        "answers": [
+            { "option": "Moby-Dick", "is_correct": true },
+            { "option": "The Scarlet Letter", "is_correct": false },
+            { "option": "Great Expectations", "is_correct": false },
+            { "option": "Wuthering Heights", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q63",
+        "category_id": "category5",
+        "question_text": "Who wrote '1984'?",
+        "answers": [
+            { "option": "George Orwell", "is_correct": true },
+            { "option": "Aldous Huxley", "is_correct": false },
+            { "option": "Ray Bradbury", "is_correct": false },
+            { "option": "J.D. Salinger", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q64",
+        "category_id": "category5",
+        "question_text": "Who is the author of 'To Kill a Mockingbird'?",
+        "answers": [
+            { "option": "Harper Lee", "is_correct": true },
+            { "option": "F. Scott Fitzgerald", "is_correct": false },
+            { "option": "Mark Twain", "is_correct": false },
+            { "option": "Toni Morrison", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q65",
+        "category_id": "category5",
+        "question_text": "What Shakespearean play features the characters Rosencrantz and Guildenstern?",
+        "answers": [
+            { "option": "Hamlet", "is_correct": true },
+            { "option": "Macbeth", "is_correct": false },
+            { "option": "Othello", "is_correct": false },
+            { "option": "King Lear", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q66",
+        "category_id": "category5",
+        "question_text": "What is the fictional setting of 'The Lord of the Rings'?",
+        "answers": [
+            { "option": "Middle-earth", "is_correct": true },
+            { "option": "Narnia", "is_correct": false },
+            { "option": "Westeros", "is_correct": false },
+            { "option": "Hogwarts", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q67",
+        "category_id": "category5",
+        "question_text": "Which author created the character Sherlock Holmes?",
+        "answers": [
+            { "option": "Arthur Conan Doyle", "is_correct": true },
+            { "option": "Agatha Christie", "is_correct": false },
+            { "option": "Wilkie Collins", "is_correct": false },
+            { "option": "Edgar Allan Poe", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q68",
+        "category_id": "category5",
+        "question_text": "Which Greek epic tells the story of the Trojan War?",
+        "answers": [
+            { "option": "The Iliad", "is_correct": true },
+            { "option": "The Odyssey", "is_correct": false },
+            { "option": "The Aeneid", "is_correct": false },
+            { "option": "Beowulf", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q69",
+        "category_id": "category5",
+        "question_text": "What is the name of the whale in 'Moby-Dick'?",
+        "answers": [
+            { "option": "Moby Dick", "is_correct": true },
+            { "option": "Ahab", "is_correct": false },
+            { "option": "Ishmael", "is_correct": false },
+            { "option": "Queequeg", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q70",
+        "category_id": "category5",
+        "question_text": "Which poet wrote 'The Raven'?",
+        "answers": [
+            { "option": "Edgar Allan Poe", "is_correct": true },
+            { "option": "Walt Whitman", "is_correct": false },
+            { "option": "Emily Dickinson", "is_correct": false },
+            { "option": "Robert Frost", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q71",
+        "category_id": "category6",
+        "question_text": "Who is considered the father of the computer?",
+        "answers": [
+            { "option": "Charles Babbage", "is_correct": true },
+            { "option": "Alan Turing", "is_correct": false },
+            { "option": "John von Neumann", "is_correct": false },
+            { "option": "Steve Jobs", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q72",
+        "category_id": "category6",
+        "question_text": "What does 'HTTP' stand for?",
+        "answers": [
+            { "option": "Hypertext Transfer Protocol", "is_correct": true },
+            { "option": "Hyper Transfer Text Protocol", "is_correct": false },
+            { "option": "High Transfer Text Protocol", "is_correct": false },
+            { "option": "Hypertext Transition Protocol", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q73",
+        "category_id": "category6",
+        "question_text": "What programming language is known as the language of the web?",
+        "answers": [
+            { "option": "JavaScript", "is_correct": true },
+            { "option": "Python", "is_correct": false },
+            { "option": "Java", "is_correct": false },
+            { "option": "Ruby", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q74",
+        "category_id": "category6",
+        "question_text": "Who invented the World Wide Web?",
+        "answers": [
+            { "option": "Tim Berners-Lee", "is_correct": true },
+            { "option": "Vint Cerf", "is_correct": false },
+            { "option": "Steve Jobs", "is_correct": false },
+            { "option": "Bill Gates", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q75",
+        "category_id": "category6",
+        "question_text": "What is the primary component of a computer's CPU?",
+        "answers": [
+            { "option": "Transistors", "is_correct": true },
+            { "option": "Diodes", "is_correct": false },
+            { "option": "Capacitors", "is_correct": false },
+            { "option": "Resistors", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q76",
+        "category_id": "category6",
+        "question_text": "Which company developed the iPhone?",
+        "answers": [
+            { "option": "Apple", "is_correct": true },
+            { "option": "Samsung", "is_correct": false },
+            { "option": "Google", "is_correct": false },
+            { "option": "Microsoft", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q77",
+        "category_id": "category6",
+        "question_text": "What does 'AI' stand for in technology?",
+        "answers": [
+            { "option": "Artificial Intelligence", "is_correct": true },
+            { "option": "Automated Interaction", "is_correct": false },
+            { "option": "Advanced Integration", "is_correct": false },
+            { "option": "Active Interface", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q78",
+        "category_id": "category6",
+        "question_text": "What is the name of the first computer programmer?",
+        "answers": [
+            { "option": "Ada Lovelace", "is_correct": true },
+            { "option": "Grace Hopper", "is_correct": false },
+            { "option": "Charles Babbage", "is_correct": false },
+            { "option": "Alan Turing", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q79",
+        "category_id": "category6",
+        "question_text": "Which device is used to connect to the internet?",
+        "answers": [
+            { "option": "Modem", "is_correct": true },
+            { "option": "Router", "is_correct": false },
+            { "option": "Switch", "is_correct": false },
+            { "option": "Hub", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q80",
+        "category_id": "category6",
+        "question_text": "Which operating system is open-source?",
+        "answers": [
+            { "option": "Linux", "is_correct": true },
+            { "option": "Windows", "is_correct": false },
+            { "option": "MacOS", "is_correct": false },
+            { "option": "iOS", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q81",
+        "category_id": "category7",
+        "question_text": "Which band released the album 'Abbey Road'?",
+        "answers": [
+            { "option": "The Beatles", "is_correct": true },
+            { "option": "The Rolling Stones", "is_correct": false },
+            { "option": "Pink Floyd", "is_correct": false },
+            { "option": "Led Zeppelin", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q82",
+        "category_id": "category7",
+        "question_text": "Who is known as the 'King of Pop'?",
+        "answers": [
+            { "option": "Michael Jackson", "is_correct": true },
+            { "option": "Elvis Presley", "is_correct": false },
+            { "option": "Prince", "is_correct": false },
+            { "option": "Freddie Mercury", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q83",
+        "category_id": "category7",
+        "question_text": "Which classical composer became deaf later in life?",
+        "answers": [
+            { "option": "Ludwig van Beethoven", "is_correct": true },
+            { "option": "Wolfgang Amadeus Mozart", "is_correct": false },
+            { "option": "Johann Sebastian Bach", "is_correct": false },
+            { "option": "Franz Schubert", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q84",
+        "category_id": "category7",
+        "question_text": "Who wrote the opera 'The Magic Flute'?",
+        "answers": [
+            { "option": "Wolfgang Amadeus Mozart", "is_correct": true },
+            { "option": "Giuseppe Verdi", "is_correct": false },
+            { "option": "Richard Wagner", "is_correct": false },
+            { "option": "Johann Strauss II", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q85",
+        "category_id": "category7",
+        "question_text": "Which musical instrument is known as the 'King of Instruments'?",
+        "answers": [
+            { "option": "Pipe Organ", "is_correct": true },
+            { "option": "Piano", "is_correct": false },
+            { "option": "Violin", "is_correct": false },
+            { "option": "Guitar", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q86",
+        "category_id": "category7",
+        "question_text": "Which singer is nicknamed 'The Boss'?",
+        "answers": [
+            { "option": "Bruce Springsteen", "is_correct": true },
+            { "option": "Billy Joel", "is_correct": false },
+            { "option": "Bob Dylan", "is_correct": false },
+            { "option": "Elton John", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q87",
+        "category_id": "category7",
+        "question_text": "Who released the song 'Bohemian Rhapsody'?",
+        "answers": [
+            { "option": "Queen", "is_correct": true },
+            { "option": "The Beatles", "is_correct": false },
+            { "option": "Pink Floyd", "is_correct": false },
+            { "option": "The Rolling Stones", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q88",
+        "category_id": "category7",
+        "question_text": "What is the best-selling album of all time?",
+        "answers": [
+            { "option": "Thriller by Michael Jackson", "is_correct": true },
+            { "option": "The Wall by Pink Floyd", "is_correct": false },
+            { "option": "Rumours by Fleetwood Mac", "is_correct": false },
+            { "option": "Hotel California by Eagles", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q89",
+        "category_id": "category7",
+        "question_text": "What is the most-played instrument in orchestras?",
+        "answers": [
+            { "option": "Violin", "is_correct": true },
+            { "option": "Piano", "is_correct": false },
+            { "option": "Flute", "is_correct": false },
+            { "option": "Cello", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q90",
+        "category_id": "category7",
+        "question_text": "Which artist released 'Rolling in the Deep'?",
+        "answers": [
+            { "option": "Adele", "is_correct": true },
+            { "option": "Beyoncé", "is_correct": false },
+            { "option": "Taylor Swift", "is_correct": false },
+            { "option": "Rihanna", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q91",
+        "category_id": "category8",
+        "question_text": "Who is the king of the Greek gods?",
+        "answers": [
+            { "option": "Zeus", "is_correct": true },
+            { "option": "Poseidon", "is_correct": false },
+            { "option": "Hades", "is_correct": false },
+            { "option": "Apollo", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q92",
+        "category_id": "category8",
+        "question_text": "What is Thor's weapon of choice?",
+        "answers": [
+            { "option": "Mjolnir (Hammer)", "is_correct": true },
+            { "option": "Sword", "is_correct": false },
+            { "option": "Trident", "is_correct": false },
+            { "option": "Axe", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q93",
+        "category_id": "category8",
+        "question_text": "Which Roman god is equivalent to the Greek god Hermes?",
+        "answers": [
+            { "option": "Mercury", "is_correct": true },
+            { "option": "Mars", "is_correct": false },
+            { "option": "Jupiter", "is_correct": false },
+            { "option": "Apollo", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q94",
+        "category_id": "category8",
+        "question_text": "Who is the Norse god of mischief?",
+        "answers": [
+            { "option": "Loki", "is_correct": true },
+            { "option": "Thor", "is_correct": false },
+            { "option": "Odin", "is_correct": false },
+            { "option": "Freyr", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q95",
+        "category_id": "category8",
+        "question_text": "What is the Greek underworld called?",
+        "answers": [
+            { "option": "Hades", "is_correct": true },
+            { "option": "Tartarus", "is_correct": false },
+            { "option": "Elysium", "is_correct": false },
+            { "option": "Asphodel", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q96",
+        "category_id": "category8",
+        "question_text": "What is the name of the winged horse in Greek mythology?",
+        "answers": [
+            { "option": "Pegasus", "is_correct": true },
+            { "option": "Chimera", "is_correct": false },
+            { "option": "Hippogriff", "is_correct": false },
+            { "option": "Cerberus", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q97",
+        "category_id": "category8",
+        "question_text": "Who is the Egyptian god of the sun?",
+        "answers": [
+            { "option": "Ra", "is_correct": true },
+            { "option": "Osiris", "is_correct": false },
+            { "option": "Anubis", "is_correct": false },
+            { "option": "Horus", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q98",
+        "category_id": "category8",
+        "question_text": "Who is the Greek goddess of wisdom?",
+        "answers": [
+            { "option": "Athena", "is_correct": true },
+            { "option": "Aphrodite", "is_correct": false },
+            { "option": "Hera", "is_correct": false },
+            { "option": "Artemis", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q99",
+        "category_id": "category8",
+        "question_text": "What creature has the body of a lion and the head of a human in Greek mythology?",
+        "answers": [
+            { "option": "Sphinx", "is_correct": true },
+            { "option": "Minotaur", "is_correct": false },
+            { "option": "Cerberus", "is_correct": false },
+            { "option": "Griffin", "is_correct": false }
+        ]
+    },
+    {
+        "id": "q100",
+        "category_id": "category8",
+        "question_text": "What is the Roman name for the Greek god Ares?",
+        "answers": [
+            { "option": "Mars", "is_correct": true },
+            { "option": "Mercury", "is_correct": false },
+            { "option": "Jupiter", "is_correct": false },
+            { "option": "Apollo", "is_correct": false }
+        ]
     }
-  ]
-  
+]

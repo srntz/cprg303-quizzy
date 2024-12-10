@@ -1,15 +1,382 @@
 [
-    {
-      "id": "quiz1",
-      "category_id": "category1",
-      "play_count": 50,
-      "questions": ["question1"]
-    },
-    {
-      "id": "quiz2",
-      "category_id": "category2",
-      "play_count": 30,
-      "questions": ["question2"]
-    }
-  ]
-  
+  {
+    "id": "quiz1",
+    "name": "World History",
+    "category_id": "category2",
+    "play_count": 75,
+    "questions": [
+      {
+        "id": "q1"
+      },
+      {
+        "id": "q2"
+      },
+      {
+        "id": "q3"
+      },
+      {
+        "id": "q4"
+      },
+      {
+        "id": "q5"
+      },
+      {
+        "id": "q6"
+      },
+      {
+        "id": "q7"
+      },
+      {
+        "id": "q8"
+      },
+      {
+        "id": "q9"
+      },
+      {
+        "id": "q10"
+      }
+    ]
+  },
+  {
+    "id": "quiz2",
+    "name": "Astronomy Basics",
+    "category_id": "category1",
+    "play_count": 60,
+    "questions": [
+      {
+        "id": "q11"
+      },
+      {
+        "id": "q12"
+      },
+      {
+        "id": "q13"
+      },
+      {
+        "id": "q14"
+      },
+      {
+        "id": "q15"
+      },
+      {
+        "id": "q16"
+      },
+      {
+        "id": "q17"
+      },
+      {
+        "id": "q18"
+      },
+      {
+        "id": "q19"
+      },
+      {
+        "id": "q20"
+      }
+    ]
+  },
+  {
+    "id": "quiz3",
+    "name": "Biology Fundamentals",
+    "category_id": "category1",
+    "play_count": 45,
+    "questions": [
+      {
+        "id": "q21"
+      },
+      {
+        "id": "q22"
+      },
+      {
+        "id": "q23"
+      },
+      {
+        "id": "q24"
+      },
+      {
+        "id": "q25"
+      },
+      {
+        "id": "q26"
+      },
+      {
+        "id": "q27"
+      },
+      {
+        "id": "q28"
+      },
+      {
+        "id": "q29"
+      },
+      {
+        "id": "q30"
+      }
+    ]
+  },
+  {
+    "id": "quiz4",
+    "name": "Physics Essentials",
+    "category_id": "category1",
+    "play_count": 50,
+    "questions": [
+      {
+        "id": "q31"
+      },
+      {
+        "id": "q32"
+      },
+      {
+        "id": "q33"
+      },
+      {
+        "id": "q34"
+      },
+      {
+        "id": "q35"
+      },
+      {
+        "id": "q36"
+      },
+      {
+        "id": "q37"
+      },
+      {
+        "id": "q38"
+      },
+      {
+        "id": "q39"
+      },
+      {
+        "id": "q40"
+      }
+    ]
+  },
+  {
+    "id": "quiz5",
+    "name": "Geography Trivia",
+    "category_id": "category3",
+    "play_count": 55,
+    "questions": [
+      {
+        "id": "q41"
+      },
+      {
+        "id": "q42"
+      },
+      {
+        "id": "q43"
+      },
+      {
+        "id": "q44"
+      },
+      {
+        "id": "q45"
+      },
+      {
+        "id": "q46"
+      },
+      {
+        "id": "q47"
+      },
+      {
+        "id": "q48"
+      },
+      {
+        "id": "q49"
+      },
+      {
+        "id": "q50"
+      }
+    ]
+  },
+  {
+    "id": "quiz6",
+    "name": "Sports Highlights",
+    "category_id": "category4",
+    "play_count": 40,
+    "questions": [
+      {
+        "id": "q51"
+      },
+      {
+        "id": "q52"
+      },
+      {
+        "id": "q53"
+      },
+      {
+        "id": "q54"
+      },
+      {
+        "id": "q55"
+      },
+      {
+        "id": "q56"
+      },
+      {
+        "id": "q57"
+      },
+      {
+        "id": "q58"
+      },
+      {
+        "id": "q59"
+      },
+      {
+        "id": "q60"
+      }
+    ]
+  },
+  {
+    "id": "quiz7",
+    "name": "Literature Masterpieces",
+    "category_id": "category5",
+    "play_count": 35,
+    "questions": [
+      {
+        "id": "q61"
+      },
+      {
+        "id": "q62"
+      },
+      {
+        "id": "q63"
+      },
+      {
+        "id": "q64"
+      },
+      {
+        "id": "q65"
+      },
+      {
+        "id": "q66"
+      },
+      {
+        "id": "q67"
+      },
+      {
+        "id": "q68"
+      },
+      {
+        "id": "q69"
+      },
+      {
+        "id": "q70"
+      }
+    ]
+  },
+  {
+    "id": "quiz8",
+    "name": "Technology Breakthroughs",
+    "category_id": "category6",
+    "play_count": 50,
+    "questions": [
+      {
+        "id": "q71"
+      },
+      {
+        "id": "q72"
+      },
+      {
+        "id": "q73"
+      },
+      {
+        "id": "q74"
+      },
+      {
+        "id": "q75"
+      },
+      {
+        "id": "q76"
+      },
+      {
+        "id": "q77"
+      },
+      {
+        "id": "q78"
+      },
+      {
+        "id": "q79"
+      },
+      {
+        "id": "q80"
+      }
+    ]
+  },
+  {
+    "id": "quiz9",
+    "name": "Music Legends",
+    "category_id": "category7",
+    "play_count": 45,
+    "questions": [
+      {
+        "id": "q81"
+      },
+      {
+        "id": "q82"
+      },
+      {
+        "id": "q83"
+      },
+      {
+        "id": "q84"
+      },
+      {
+        "id": "q85"
+      },
+      {
+        "id": "q86"
+      },
+      {
+        "id": "q87"
+      },
+      {
+        "id": "q88"
+      },
+      {
+        "id": "q89"
+      },
+      {
+        "id": "q90"
+      }
+    ]
+  },
+  {
+    "id": "quiz10",
+    "name": "Mythology Insights",
+    "category_id": "category8",
+    "play_count": 38,
+    "questions": [
+      {
+        "id": "q91"
+      },
+      {
+        "id": "q92"
+      },
+      {
+        "id": "q93"
+      },
+      {
+        "id": "q94"
+      },
+      {
+        "id": "q95"
+      },
+      {
+        "id": "q96"
+      },
+      {
+        "id": "q97"
+      },
+      {
+        "id": "q98"
+      },
+      {
+        "id": "q99"
+      },
+      {
+        "id": "q100"
+      }
+    ]
+  }
+]
