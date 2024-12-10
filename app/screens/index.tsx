@@ -2,7 +2,15 @@ import { Colors } from "@/constants/Colors";
 import QuizCard from "@/src/components/card/QuizCard";
 import ProfileImage from "@/src/components/profile/ProfileImage";
 import SectionTitle from "@/src/components/text/SectionTitle";
-import { ScrollView, StyleSheet, Text, Touchable, TouchableOpacity, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  Touchable,
+  TouchableOpacity,
+  View,
+  Image,
+} from "react-native";
 
 export default function HomeScreen() {
   const handlePress = () => {
@@ -45,7 +53,7 @@ export default function HomeScreen() {
           </Text>
         </View>
         <TouchableOpacity onPress={handlePress}>
-          <img
+          <Image
             src="https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca"
             alt="start quiz"
             width={60}
