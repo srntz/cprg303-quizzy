@@ -50,14 +50,7 @@ export default function SearchScreen() {
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: Colors.light.accent,
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
+    <View style={styles.container}>
       <View style={styles.headerContainer}>
         <PageTitle pageTitle="Category" />
         <SearchBox />
@@ -84,6 +77,12 @@ export default function SearchScreen() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Colors.light.accent,
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
   scrollView: {
     marginHorizontal: 10,
   },

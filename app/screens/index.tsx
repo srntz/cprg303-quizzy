@@ -10,14 +10,7 @@ export default function HomeScreen() {
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: Colors.light.accent,
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
+    <View style={styles.container}>
       <View style={styles.mainContainer}>
         <View style={styles.welcomeContainer}>
           <Text style={styles.welcomeText}> WELCOME </Text>
@@ -85,6 +78,12 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Colors.light.accent,
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
   scrollView: {
     marginHorizontal: 10,
   },
