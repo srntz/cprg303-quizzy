@@ -12,8 +12,9 @@
           "completion_date": "2024-01-01T12:00:00Z",
           "total_score": 80,
           "score_breakdown": [
-            {"question_id": 1, "score": 10},
-            {"question_id": 2, "score": 20}
+            {"question_id": 1, "score": 1},
+            {"question_id": 2, "score": 0},
+            {"question_id": 3, "score": 1}
           ]
         }
       ]
