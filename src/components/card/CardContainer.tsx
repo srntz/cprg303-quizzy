@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, ViewStyle, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View, ViewStyle } from "react-native";
 
 export default function CardContainer({
   onPress,
@@ -26,8 +26,9 @@ export default function CardContainer({
 const styles = StyleSheet.create({
   card: {
     backgroundColor: "white",
-    padding: 10,
-    margin: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginVertical: 10,
     borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },

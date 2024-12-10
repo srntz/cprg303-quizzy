@@ -1,11 +1,11 @@
-import { View, Text, TextInput, StyleSheet, ViewStyle, Pressable } from "react-native";
-import StatusBarMarginLayout from "@/src/components/utils/StatusBarMarginLayout";
-import { Colors } from "@/constants/Colors";
-import { useRouter } from "expo-router";
-import { useAuthenticationContext } from "@/src/context/AuthenticationContext";
 import { AuthenticationApi, UserApi } from "@/api/generated";
-import { useState } from "react";
+import { Colors } from "@/constants/Colors";
+import StatusBarMarginLayout from "@/src/components/utils/StatusBarMarginLayout";
+import { useAuthenticationContext } from "@/src/context/AuthenticationContext";
 import { IQuizzesPlayed, IUserData } from "@/src/interfaces/IUserData";
+import { useRouter } from "expo-router";
+import { useState } from "react";
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 
 interface ILoginData {
   id: string;
@@ -29,7 +29,10 @@ export default function LoginPage() {
     let login;
     try {
       login = await authApi.loginPost({ email: formState.email });
+
+      console.log(login.data);
     } catch (e) {
+      console.log(`error: ${e}`);
       setFormState((prev) => {
         return { ...prev, error: true };
       });
