@@ -1,24 +1,31 @@
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View, ViewStyle } from "react-native";
 
-export default function ProfileImage({ imageUrl }: { imageUrl: string }) {
+interface ProfileImageProps {
+  imageUrl: string;
+  style?: ViewStyle; // Allow custom styles for the container
+  size?: number; // Allow customizable size for the profile image
+}
+
+export default function ProfileImage({ imageUrl, style, size = 80 }: ProfileImageProps) {
   return (
-    <View style={styles.imageContianer}>
+    <View style={[styles.imageContainer, style, { width: size, height: size, borderRadius: size / 2 }]}>
       <Image
         source={{ uri: imageUrl }}
-        alt="Profile Image"
-        style={{ width: "100%", height: "100%" }}
+        style={styles.image}
+        resizeMode="cover" // Ensure the image covers the container
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  imageContianer: {
-    width: 80,
-    height: 80,
-    borderRadius: 50,
+  imageContainer: {
     backgroundColor: "lightgray",
     overflow: "hidden",
+  },
+  image: {
+    width: "100%",
+    height: "100%",
   },
 });

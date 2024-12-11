@@ -3,6 +3,7 @@ import { Colors } from "@/constants/Colors";
 import StatusBarMarginLayout from "@/src/components/utils/StatusBarMarginLayout";
 import { useAuthenticationContext } from "@/src/context/AuthenticationContext";
 import { IQuizzesPlayed, IUserData } from "@/src/interfaces/IUserData";
+import { saveItem } from "@/src/utils/secure_storage";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
@@ -40,7 +41,9 @@ export default function LoginPage() {
       return;
     }
 
-    const userData = await userApi.userProfileGet((login.data as ILoginData).id);
+    const userId = (login.data as ILoginData).id;
+    await saveItem('userId', userId);
+    const userData = await userApi.userProfileGet(userId);
     const userObject: IUserData = {
       email: userData.data.email as string,
       id: userData.data.id as string,
@@ -54,7 +57,7 @@ export default function LoginPage() {
   }
 
   return (
-    <StatusBarMarginLayout backgroundColor={Colors.light.accent} theme={"light"}>
+     <StatusBarMarginLayout backgroundColor={Colors.light.accent} theme={"light"}>
       <View
         style={{
           backgroundColor: Colors.light.accent,
@@ -64,6 +67,7 @@ export default function LoginPage() {
           gap: 30,
         }}
       >
+
         <Text
           style={{
             fontFamily: "Rubik_600SemiBold",
@@ -106,7 +110,7 @@ export default function LoginPage() {
 
         <Pressable style={styles.button} onPress={handleLogin}>
           <Text style={{ color: "white" }}>Login</Text>
-        </Pressable>
+        </Pressable> */
       </View>
     </StatusBarMarginLayout>
   );

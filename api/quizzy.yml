@@ -276,6 +276,39 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
+  /user-stats:
+    get:
+      tags:
+        - User
+      summary: Get User Stats
+      description: Retrieve user statistics, including total points, world rank, best category rank, quizzes played by time, and top performance by category.
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The ID of the user whose stats are requested.
+      responses:
+        '200':
+          description: User stats
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStats'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
 components:
   schemas:
     SaveQuizResultRequest:
@@ -472,3 +505,45 @@ components:
         error:
           type: string
           description: A description of the error.
+
+    UserStats:
+      type: object
+      properties:
+        totalPoints:
+          type: integer
+          description: Total points the user has earned.
+        worldRank:
+          type: integer
+          description: The user's rank in the global leaderboard.
+        bestCategory:
+          type: string
+        quizzesPlayed:
+          type: object
+          properties:
+            daily:
+              type: integer
+              items:
+                type: integer
+              description: Quizzes played daily.
+            monthly:
+              type: integer
+              items:
+                type: integer
+              description: Quizzes played monthly.
+            yearly:
+              type: integer
+              items:
+                type: integer
+              description: Quizzes played yearly.
+        topPerformanceByCategory:
+          type: array
+          items:
+            type: object
+            properties:
+              categoryName:
+                type: string
+              categoryId:
+                type: string
+              score:
+                type: integer
+              
