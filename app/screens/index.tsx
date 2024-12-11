@@ -34,7 +34,7 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </View>
       <View style={styles.popularContainer}>
-        <ScrollView style={styles.scrollView}>
+        <ScrollView>
           <SectionTitle sectionTitle="Most Popular" />
           <QuizCard
             title={"Statistic Quiz"}
@@ -83,9 +83,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.light.accent,
     justifyContent: "space-between",
     alignItems: "center",
-  },
-  scrollView: {
-    marginHorizontal: 10,
   },
   mainContainer: {
     width: "100%",

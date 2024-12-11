@@ -56,7 +56,7 @@ export default function SearchScreen() {
         <SearchBox />
       </View>
       <View style={styles.categoryContainer}>
-        <ScrollView style={styles.scrollView}>
+        <ScrollView>
           <SectionTitle sectionTitle="Categories" />
           <View style={styles.categoryCardContainer}>
             {data.map((item) => (
@@ -82,9 +82,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.light.accent,
     justifyContent: "space-between",
     alignItems: "center",
-  },
-  scrollView: {
-    marginHorizontal: 10,
   },
   headerContainer: {
     marginTop: 30,
