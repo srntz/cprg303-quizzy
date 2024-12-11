@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     paddingVertical: 30,
+    flexShrink: 1,
   },
   question: {
     fontSize: 20,

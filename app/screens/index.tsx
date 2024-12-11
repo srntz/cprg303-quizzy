@@ -81,6 +81,7 @@ export default function HomeScreen() {
           {popularQuizzes.map((item) => {
             return (
               <QuizCard
+                key={item.id}
                 title={item.name}
                 imageUrl={"https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca"}
                 category={item.category_id}

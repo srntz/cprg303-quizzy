@@ -20,7 +20,9 @@ export default function AnswerCard({
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
+    alignItems: "center",
     width: "100%",
+    minHeight: 60,
     paddingVertical: 10,
   },
   answerOption: {
