@@ -3,9 +3,26 @@ import { StyleSheet } from "react-native";
 import CardContainer from "../card/CardContainer";
 import ProfileUsername from "../profile/ProfileUsername";
 
-export default function TopUsers() {
+interface Player {
+  username: string;
+  rank: number;
+  score: number;
+}
+
+interface TopUsersProps {
+  topPlayers: Player[];
+}
+
+export default function TopUsers({ topPlayers }: TopUsersProps) {
   return (
     <CardContainer style={styles.contaier} disabled={true}>
+      {topPlayers.map((player) => (
+        <ProfileUsername
+          key={player.rank}
+          username={player.username}
+          imageUrl={`https://www.aiscribbles.com/img/variant/large-preview/${player.rank}/?v=7ce9ca`}
+        />
+      ))}
       <ProfileUsername
         username="John Doe"
         imageUrl="https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca"

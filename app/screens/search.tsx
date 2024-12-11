@@ -1,7 +1,6 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { Colors } from "@/constants/Colors";
 import CategoryCard from "@/src/components/card/CategoryCard";
-import { ScrollView } from "react-native-gesture-handler";
 import SectionTitle from "@/src/components/text/SectionTitle";
 import PageTitle from "@/src/components/text/PageTitle";
 import SearchBox from "@/src/SearchBox";
@@ -51,24 +50,17 @@ export default function SearchScreen() {
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: Colors.light.accent,
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
-      <View style={{ marginTop: 20, gap: 20, width: "80%" }}>
+    <View style={styles.container}>
+      <View style={styles.headerContainer}>
         <PageTitle pageTitle="Category" />
         <SearchBox />
       </View>
       <View style={styles.categoryContainer}>
-        <ScrollView style={styles.scrollView}>
+        <ScrollView>
           <SectionTitle sectionTitle="Categories" />
-          <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between" }}>
+          <View style={styles.categoryCardContainer}>
             {data.map((item) => (
-              <View key={item.id} style={{ width: "45%" }}>
+              <View key={item.id} style={styles.categoryCard}>
                 <CategoryCard
                   categoryName={item.categoryName}
                   onPress={handlePress}
@@ -85,8 +77,17 @@ export default function SearchScreen() {
 }
 
 const styles = StyleSheet.create({
-  scrollView: {
-    marginHorizontal: 10,
+  container: {
+    flex: 1,
+    backgroundColor: Colors.light.accent,
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  headerContainer: {
+    marginTop: 30,
+    paddingVertical: 30,
+    gap: 20,
+    width: "80%",
   },
   categoryContainer: {
     width: "100%",
@@ -96,5 +97,13 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     paddingTop: 30,
     paddingHorizontal: 20,
+  },
+  categoryCardContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+  },
+  categoryCard: {
+    width: "45%",
   },
 });

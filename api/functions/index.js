@@ -20,7 +20,7 @@ app.post("/login", async (req, res) => {
     }
 
     try {
-        const usersRef = db.collection("user_profile");
+        const usersRef = db.collection("user_profiles");
         const snapshot = await usersRef.where("email", "==", email).get();
 
         if (snapshot.empty) {
@@ -34,6 +34,8 @@ app.post("/login", async (req, res) => {
     }
 });
 
+
+
 // Endpoint: Get User Profile
 app.get("/user-profile", async (req, res) => {
     const userId = req.query.userId;
@@ -43,7 +45,7 @@ app.get("/user-profile", async (req, res) => {
     }
 
     try {
-        const userDoc = await db.collection("user_profile").doc(userId).get();
+        const userDoc = await db.collection("user_profiles").doc(userId).get();
 
         if (!userDoc.exists) {
             return res.status(404).json({ error: "User not found" });
@@ -62,6 +64,92 @@ app.get("/user-profile", async (req, res) => {
         return res.status(500).json({ error: error.message });
     }
 });
+
+// Endpoint: Get Quiz with Questions
+app.get("/quiz-with-questions", async (req, res) => {
+    const quizId = req.query.quizId;
+
+    if (!quizId) {
+        return res.status(400).json({ error: "Missing required parameter: quizId" });
+    }
+
+    try {
+        // Fetch the specific quiz by ID
+        const quizDoc = await db.collection("quizzes").doc(quizId).get();
+
+        if (!quizDoc.exists) {
+            return res.status(404).json({ error: "Quiz not found" });
+        }
+
+        const quizData = quizDoc.data();
+
+        // Extract question IDs from the quiz document
+        const questionsArray = quizData.questions || [];
+
+        // Fetch questions corresponding to the question IDs
+        let questions = [];
+        if (questionsArray.length > 0) {
+            const questionIds = questionsArray.map((q) => q.id);
+            const questionsSnapshot = await db
+                .collection("questions")
+                .where("__name__", "in", questionIds)
+                .get();
+
+            questions = questionsSnapshot.docs.map((questionDoc) => ({
+                id: questionDoc.id,
+                ...questionDoc.data(),
+            }));
+        }
+
+        return res.status(200).json({
+            id: quizDoc.id,
+            ...quizData,
+            questions,
+        });
+    } catch (error) {
+        console.error("Error fetching quiz with questions:", error);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+// Endpoint: Save Quiz Result
+app.post("/save-quiz-result", async (req, res) => {
+    const { userId, quizId, categoryId, totalScore, scoreBreakdown } = req.body;
+
+    if (!userId || !quizId || !categoryId || totalScore === undefined || !Array.isArray(scoreBreakdown)) {
+        return res.status(400).json({ error: "Missing required fields or invalid data." });
+    }
+
+    try {
+        const userRef = db.collection("user_profiles").doc(userId);
+        const userDoc = await userRef.get();
+
+        if (!userDoc.exists) {
+            return res.status(404).json({ error: "User not found." });
+        }
+
+        // Prepare quiz result data
+        const quizResult = {
+            quiz_id: quizId,
+            category_id: categoryId,
+            completion_date: new Date().toISOString(),
+            total_score: totalScore,
+            score_breakdown: scoreBreakdown,
+        };
+
+        // Update the user's quizzes_played array
+        await userRef.update({
+            quizzes_played: admin.firestore.FieldValue.arrayUnion(quizResult),
+        });
+
+        return res.status(200).json({ message: "Quiz result saved successfully." });
+    } catch (error) {
+        console.error("Error saving quiz result:", error);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+
 
 // Endpoint: Get Quiz Categories
 app.get("/quiz-categories", async (_req, res) => {
