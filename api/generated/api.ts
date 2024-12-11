@@ -411,6 +411,93 @@ export interface UserProfileQuizzesPlayedInnerScoreBreakdownInner {
      */
     'score'?: number;
 }
+/**
+ * 
+ * @export
+ * @interface UserStats
+ */
+export interface UserStats {
+    /**
+     * Total points the user has earned.
+     * @type {number}
+     * @memberof UserStats
+     */
+    'totalPoints'?: number;
+    /**
+     * The user\'s rank in the global leaderboard.
+     * @type {number}
+     * @memberof UserStats
+     */
+    'worldRank'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserStats
+     */
+    'bestCategory'?: string;
+    /**
+     * 
+     * @type {UserStatsQuizzesPlayed}
+     * @memberof UserStats
+     */
+    'quizzesPlayed'?: UserStatsQuizzesPlayed;
+    /**
+     * 
+     * @type {Array<UserStatsTopPerformanceByCategoryInner>}
+     * @memberof UserStats
+     */
+    'topPerformanceByCategory'?: Array<UserStatsTopPerformanceByCategoryInner>;
+}
+/**
+ * 
+ * @export
+ * @interface UserStatsQuizzesPlayed
+ */
+export interface UserStatsQuizzesPlayed {
+    /**
+     * Quizzes played daily.
+     * @type {Array<number>}
+     * @memberof UserStatsQuizzesPlayed
+     */
+    'daily'?: Array<number>;
+    /**
+     * Quizzes played monthly.
+     * @type {Array<number>}
+     * @memberof UserStatsQuizzesPlayed
+     */
+    'monthly'?: Array<number>;
+    /**
+     * Quizzes played yearly.
+     * @type {Array<number>}
+     * @memberof UserStatsQuizzesPlayed
+     */
+    'yearly'?: Array<number>;
+}
+/**
+ * 
+ * @export
+ * @interface UserStatsTopPerformanceByCategoryInner
+ */
+export interface UserStatsTopPerformanceByCategoryInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof UserStatsTopPerformanceByCategoryInner
+     */
+    'categoryName'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserStatsTopPerformanceByCategoryInner
+     */
+    'categoryId'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof UserStatsTopPerformanceByCategoryInner
+     */
+    'score'?: number;
+}
 
 /**
  * AuthenticationApi - axios parameter creator
@@ -1155,6 +1242,43 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Retrieve user statistics, including total points, world rank, best category rank, quizzes played by time, and top performance by category.
+         * @summary Get User Stats
+         * @param {string} userId The ID of the user whose stats are requested.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userStatsGet: async (userId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('userStatsGet', 'userId', userId)
+            const localVarPath = `/user-stats`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (userId !== undefined) {
+                localVarQueryParameter['userId'] = userId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -1178,6 +1302,19 @@ export const UserApiFp = function(configuration?: Configuration) {
             const localVarOperationServerBasePath = operationServerMap['UserApi.userProfileGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
+        /**
+         * Retrieve user statistics, including total points, world rank, best category rank, quizzes played by time, and top performance by category.
+         * @summary Get User Stats
+         * @param {string} userId The ID of the user whose stats are requested.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async userStatsGet(userId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserStats>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.userStatsGet(userId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.userStatsGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
     }
 };
 
@@ -1197,6 +1334,16 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          */
         userProfileGet(userId: string, options?: RawAxiosRequestConfig): AxiosPromise<UserProfile> {
             return localVarFp.userProfileGet(userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve user statistics, including total points, world rank, best category rank, quizzes played by time, and top performance by category.
+         * @summary Get User Stats
+         * @param {string} userId The ID of the user whose stats are requested.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        userStatsGet(userId: string, options?: RawAxiosRequestConfig): AxiosPromise<UserStats> {
+            return localVarFp.userStatsGet(userId, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1218,6 +1365,18 @@ export class UserApi extends BaseAPI {
      */
     public userProfileGet(userId: string, options?: RawAxiosRequestConfig) {
         return UserApiFp(this.configuration).userProfileGet(userId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieve user statistics, including total points, world rank, best category rank, quizzes played by time, and top performance by category.
+     * @summary Get User Stats
+     * @param {string} userId The ID of the user whose stats are requested.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public userStatsGet(userId: string, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).userStatsGet(userId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

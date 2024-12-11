@@ -271,5 +271,113 @@ app.get("/quizzes-by-category", async (req, res) => {
     }
 });
 
+// Endpoint: User Stats
+// Endpoint: User Stats
+app.get("/user-stats", async (req, res) => {
+    const userId = req.query.userId;
+
+    if (!userId) {
+        return res.status(400).json({ error: "Missing required parameter: userId" });
+    }
+
+    try {
+        // Fetch the user profile
+        const userDoc = await db.collection("user_profiles").doc(userId).get();
+
+        if (!userDoc.exists) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        const userData = userDoc.data();
+
+        // Calculate total points
+        const totalPoints = userData.quizzes_played?.reduce((sum, quiz) => sum + (quiz.total_score || 0), 0) || 0;
+
+        // Fetch global leaderboard to determine world rank
+        const leaderboardsSnapshot = await db.collection("leaderboards").get();
+        const leaderboards = leaderboardsSnapshot.docs.map((doc) => doc.data());
+
+        // Find the user's position in the global leaderboard
+        const allPlayers = leaderboards.flatMap((leaderboard) =>
+            leaderboard.top_players.map((player) => ({
+                username: player.username,
+                score: player.score,
+            }))
+        );
+        allPlayers.sort((a, b) => b.score - a.score); // Sort by score descending
+
+        const userRankEntry = allPlayers.find((player) => player.username === userData.username);
+        const worldRank = userRankEntry ? allPlayers.indexOf(userRankEntry) + 1 : null;
+
+        // Process quizzes_played to calculate top performance by category and best category
+        const categoryScores = userData.quizzes_played?.reduce((acc, quiz) => {
+            if (!quiz.category_id || !quiz.total_score) return acc;
+            acc[quiz.category_id] = (acc[quiz.category_id] || 0) + quiz.total_score;
+            return acc;
+        }, {});
+
+        let bestCategory = null;
+        let topPerformanceByCategory = [];
+
+        if (categoryScores) {
+            // Determine the best category by score
+            const topCategory = Object.entries(categoryScores).reduce(
+                (best, [categoryId, score]) => (score > best.score ? { categoryId, score } : best),
+                { categoryId: null, score: 0 }
+            );
+
+            if (topCategory.categoryId) {
+                const bestCategoryDoc = await db.collection("quiz_categories").doc(topCategory.categoryId).get();
+                bestCategory = bestCategoryDoc.exists ? bestCategoryDoc.data().name : "Unknown";
+            }
+
+            // Map category scores into the response structure
+            topPerformanceByCategory = await Promise.all(
+                Object.entries(categoryScores).map(async ([categoryId, score]) => {
+                    const categoryDoc = await db.collection("quiz_categories").doc(categoryId).get();
+                    const categoryName = categoryDoc.exists ? categoryDoc.data().name : "Unknown";
+                    return { categoryId, categoryName, score };
+                })
+            );
+        }
+
+        // Calculate quizzes played by day, month, and year as totals
+        const quizzesPlayedByDate = userData.quizzes_played?.reduce(
+            (acc, quiz) => {
+                const date = new Date(quiz.completion_date);
+                const dayKey = date.toISOString().split("T")[0]; // YYYY-MM-DD
+                const monthKey = `${date.getFullYear()}-${date.getMonth() + 1}`; // YYYY-MM
+                const yearKey = date.getFullYear().toString(); // YYYY
+
+                acc.daily[dayKey] = (acc.daily[dayKey] || 0) + 1;
+                acc.monthly[monthKey] = (acc.monthly[monthKey] || 0) + 1;
+                acc.yearly[yearKey] = (acc.yearly[yearKey] || 0) + 1;
+
+                return acc;
+            },
+            { daily: {}, monthly: {}, yearly: {} }
+        );
+
+        const quizzesPlayed = {
+            daily: Object.values(quizzesPlayedByDate.daily).reduce((sum, count) => sum + count, 0),
+            monthly: Object.values(quizzesPlayedByDate.monthly).reduce((sum, count) => sum + count, 0),
+            yearly: Object.values(quizzesPlayedByDate.yearly).reduce((sum, count) => sum + count, 0),
+        };
+
+        return res.status(200).json({
+            totalPoints,
+            worldRank,
+            bestCategory,
+            quizzesPlayed,
+            topPerformanceByCategory,
+        });
+    } catch (error) {
+        console.error("Error fetching user stats:", error);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+
+
 // Adapt Express App to Firebase Function (1st Gen)
 exports.api = functions.https.onRequest(app);
