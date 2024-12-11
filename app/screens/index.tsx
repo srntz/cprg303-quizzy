@@ -3,11 +3,33 @@ import QuizCard from "@/src/components/card/QuizCard";
 import ProfileImage from "@/src/components/profile/ProfileImage";
 import SectionTitle from "@/src/components/text/SectionTitle";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useEffect, useState } from "react";
+import { QuizApi } from "@/api/generated";
+import { IPopularQuiz } from "@/src/interfaces/IPopularQuiz";
+import { router } from "expo-router";
 
 export default function HomeScreen() {
+  const [popularQuizzes, setPopularQuizzes] = useState<IPopularQuiz[]>([]);
+
+  useEffect(() => {
+    async function fetchPopularQuizzes() {
+      const api = new QuizApi();
+      const res = await api.popularQuizzesGet();
+      return res;
+    }
+
+    fetchPopularQuizzes().then((res) => {
+      setPopularQuizzes(res.data);
+    });
+  }, []);
+
   const handlePress = () => {
     console.log("Pressed");
   };
+
+  function handleNavigate(quizId: string) {
+    router.push(`../quiz/${quizId}`);
+  }
 
   return (
     <View style={styles.container}>
@@ -34,41 +56,18 @@ export default function HomeScreen() {
       <View style={styles.popularContainer}>
         <ScrollView>
           <SectionTitle sectionTitle="Most Popular" />
-          <QuizCard
-            title={"Statistic Quiz"}
-            imageUrl={"https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca"}
-            onPress={handlePress}
-            category={"Math"}
-            numberOfQuestions={12}
-          />
-          <QuizCard
-            title={"Statistic Quiz"}
-            imageUrl={"https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca"}
-            onPress={handlePress}
-            category={"Math"}
-            numberOfQuestions={12}
-          />
-          <QuizCard
-            title={"Statistic Quiz"}
-            imageUrl={"https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca"}
-            onPress={handlePress}
-            category={"Math"}
-            numberOfQuestions={12}
-          />
-          <QuizCard
-            title={"Statistic Quiz"}
-            imageUrl={"https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca"}
-            onPress={handlePress}
-            category={"Math"}
-            numberOfQuestions={12}
-          />
-          <QuizCard
-            title={"Statistic Quiz"}
-            imageUrl={"https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca"}
-            onPress={handlePress}
-            category={"Math"}
-            numberOfQuestions={12}
-          />
+          {popularQuizzes.map((item) => {
+            return (
+              <QuizCard
+                key={item.id}
+                title={item.name}
+                imageUrl={"https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca"}
+                category={item.category_id}
+                onPress={() => handleNavigate(item.id)}
+                numberOfQuestions={item.questions.length}
+              />
+            );
+          })}
         </ScrollView>
       </View>
     </View>
@@ -132,6 +131,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     backgroundColor: "white",
     paddingTop: 30,
-    paddingHorizontal: 20,
+    paddingBottom: 50,
+    paddingHorizontal: 10,
   },
 });

@@ -10,6 +10,8 @@ export const Colors = {
   light: {
     text: "#11181C",
     background: "#FFFFFF",
+    answerWrong: "#F47D7D",
+    answerCorrect: "#7FFF8E",
     tint: tintColorLight,
     icon: "#687076",
     tabIconDefault: "#687076",
