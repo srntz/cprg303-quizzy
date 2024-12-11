@@ -246,6 +246,75 @@ export interface QuizQuestionsInner {
 /**
  * 
  * @export
+ * @interface SaveQuizResultRequest
+ */
+export interface SaveQuizResultRequest {
+    /**
+     * The unique ID of the user.
+     * @type {string}
+     * @memberof SaveQuizResultRequest
+     */
+    'userId'?: string;
+    /**
+     * The unique ID of the quiz.
+     * @type {string}
+     * @memberof SaveQuizResultRequest
+     */
+    'quizId'?: string;
+    /**
+     * The category ID of the quiz.
+     * @type {string}
+     * @memberof SaveQuizResultRequest
+     */
+    'categoryId'?: string;
+    /**
+     * The total score achieved by the user.
+     * @type {number}
+     * @memberof SaveQuizResultRequest
+     */
+    'totalScore'?: number;
+    /**
+     * 
+     * @type {Array<SaveQuizResultRequestScoreBreakdownInner>}
+     * @memberof SaveQuizResultRequest
+     */
+    'scoreBreakdown'?: Array<SaveQuizResultRequestScoreBreakdownInner>;
+}
+/**
+ * 
+ * @export
+ * @interface SaveQuizResultRequestScoreBreakdownInner
+ */
+export interface SaveQuizResultRequestScoreBreakdownInner {
+    /**
+     * The ID of the question.
+     * @type {string}
+     * @memberof SaveQuizResultRequestScoreBreakdownInner
+     */
+    'question_id'?: string;
+    /**
+     * The score achieved for the question.
+     * @type {number}
+     * @memberof SaveQuizResultRequestScoreBreakdownInner
+     */
+    'score'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface SuccessResponse
+ */
+export interface SuccessResponse {
+    /**
+     * Success message.
+     * @type {string}
+     * @memberof SuccessResponse
+     */
+    'message'?: string;
+}
+/**
+ * 
+ * @export
  * @interface UserProfile
  */
 export interface UserProfile {
@@ -658,6 +727,43 @@ export const QuizApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
+         * Retrieve a specific quiz along with its corresponding questions.
+         * @summary Get Quiz with Questions
+         * @param {string} quizId The ID of the quiz to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        quizWithQuestionsGet: async (quizId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'quizId' is not null or undefined
+            assertParamExists('quizWithQuestionsGet', 'quizId', quizId)
+            const localVarPath = `/quiz-with-questions`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (quizId !== undefined) {
+                localVarQueryParameter['quizId'] = quizId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve all quizzes for a specific category.
          * @summary Get Quizzes by Category
          * @param {string} categoryId The ID of the category to retrieve quizzes for.
@@ -742,6 +848,19 @@ export const QuizApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Retrieve a specific quiz along with its corresponding questions.
+         * @summary Get Quiz with Questions
+         * @param {string} quizId The ID of the quiz to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async quizWithQuestionsGet(quizId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Quiz>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.quizWithQuestionsGet(quizId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['QuizApi.quizWithQuestionsGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Retrieve all quizzes for a specific category.
          * @summary Get Quizzes by Category
          * @param {string} categoryId The ID of the category to retrieve quizzes for.
@@ -791,6 +910,16 @@ export const QuizApiFactory = function (configuration?: Configuration, basePath?
          */
         quizCategoriesGet(options?: RawAxiosRequestConfig): AxiosPromise<Array<QuizCategory>> {
             return localVarFp.quizCategoriesGet(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve a specific quiz along with its corresponding questions.
+         * @summary Get Quiz with Questions
+         * @param {string} quizId The ID of the quiz to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        quizWithQuestionsGet(quizId: string, options?: RawAxiosRequestConfig): AxiosPromise<Quiz> {
+            return localVarFp.quizWithQuestionsGet(quizId, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve all quizzes for a specific category.
@@ -847,6 +976,18 @@ export class QuizApi extends BaseAPI {
     }
 
     /**
+     * Retrieve a specific quiz along with its corresponding questions.
+     * @summary Get Quiz with Questions
+     * @param {string} quizId The ID of the quiz to retrieve.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof QuizApi
+     */
+    public quizWithQuestionsGet(quizId: string, options?: RawAxiosRequestConfig) {
+        return QuizApiFp(this.configuration).quizWithQuestionsGet(quizId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Retrieve all quizzes for a specific category.
      * @summary Get Quizzes by Category
      * @param {string} categoryId The ID of the category to retrieve quizzes for.
@@ -856,6 +997,116 @@ export class QuizApi extends BaseAPI {
      */
     public quizzesByCategoryGet(categoryId: string, options?: RawAxiosRequestConfig) {
         return QuizApiFp(this.configuration).quizzesByCategoryGet(categoryId, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * QuizResultsApi - axios parameter creator
+ * @export
+ */
+export const QuizResultsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Save the result of a quiz under a user\'s profile.
+         * @summary Save Quiz Result
+         * @param {SaveQuizResultRequest} saveQuizResultRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        saveQuizResultPost: async (saveQuizResultRequest: SaveQuizResultRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'saveQuizResultRequest' is not null or undefined
+            assertParamExists('saveQuizResultPost', 'saveQuizResultRequest', saveQuizResultRequest)
+            const localVarPath = `/save-quiz-result`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(saveQuizResultRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * QuizResultsApi - functional programming interface
+ * @export
+ */
+export const QuizResultsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = QuizResultsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Save the result of a quiz under a user\'s profile.
+         * @summary Save Quiz Result
+         * @param {SaveQuizResultRequest} saveQuizResultRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async saveQuizResultPost(saveQuizResultRequest: SaveQuizResultRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SuccessResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.saveQuizResultPost(saveQuizResultRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['QuizResultsApi.saveQuizResultPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * QuizResultsApi - factory interface
+ * @export
+ */
+export const QuizResultsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = QuizResultsApiFp(configuration)
+    return {
+        /**
+         * Save the result of a quiz under a user\'s profile.
+         * @summary Save Quiz Result
+         * @param {SaveQuizResultRequest} saveQuizResultRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        saveQuizResultPost(saveQuizResultRequest: SaveQuizResultRequest, options?: RawAxiosRequestConfig): AxiosPromise<SuccessResponse> {
+            return localVarFp.saveQuizResultPost(saveQuizResultRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * QuizResultsApi - object-oriented interface
+ * @export
+ * @class QuizResultsApi
+ * @extends {BaseAPI}
+ */
+export class QuizResultsApi extends BaseAPI {
+    /**
+     * Save the result of a quiz under a user\'s profile.
+     * @summary Save Quiz Result
+     * @param {SaveQuizResultRequest} saveQuizResultRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof QuizResultsApi
+     */
+    public saveQuizResultPost(saveQuizResultRequest: SaveQuizResultRequest, options?: RawAxiosRequestConfig) {
+        return QuizResultsApiFp(this.configuration).saveQuizResultPost(saveQuizResultRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
