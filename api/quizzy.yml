@@ -8,6 +8,44 @@ servers:
     description: Production server
 
 paths:
+  /save-quiz-result:
+    post:
+      tags:
+        - Quiz Results
+      summary: Save Quiz Result
+      description: Save the result of a quiz under a user's profile.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveQuizResultRequest'
+      responses:
+        '200':
+          description: Quiz result saved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Missing or invalid request data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
   /login:
     post:
       tags:
@@ -240,6 +278,33 @@ paths:
 
 components:
   schemas:
+    SaveQuizResultRequest:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: The unique ID of the user.
+        quizId:
+          type: string
+          description: The unique ID of the quiz.
+        categoryId:
+          type: string
+          description: The category ID of the quiz.
+        totalScore:
+          type: integer
+          description: The total score achieved by the user.
+        scoreBreakdown:
+          type: array
+          items:
+            type: object
+            properties:
+              question_id:
+                type: string
+                description: The ID of the question.
+              score:
+                type: integer
+                description: The score achieved for the question.
+
     LoginRequest:
       type: object
       properties:
@@ -393,6 +458,13 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Quiz'
+
+    SuccessResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Success message.
 
     ErrorResponse:
       type: object

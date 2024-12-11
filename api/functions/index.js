@@ -112,6 +112,44 @@ app.get("/quiz-with-questions", async (req, res) => {
     }
 });
 
+// Endpoint: Save Quiz Result
+app.post("/save-quiz-result", async (req, res) => {
+    const { userId, quizId, categoryId, totalScore, scoreBreakdown } = req.body;
+
+    if (!userId || !quizId || !categoryId || totalScore === undefined || !Array.isArray(scoreBreakdown)) {
+        return res.status(400).json({ error: "Missing required fields or invalid data." });
+    }
+
+    try {
+        const userRef = db.collection("user_profiles").doc(userId);
+        const userDoc = await userRef.get();
+
+        if (!userDoc.exists) {
+            return res.status(404).json({ error: "User not found." });
+        }
+
+        // Prepare quiz result data
+        const quizResult = {
+            quiz_id: quizId,
+            category_id: categoryId,
+            completion_date: new Date().toISOString(),
+            total_score: totalScore,
+            score_breakdown: scoreBreakdown,
+        };
+
+        // Update the user's quizzes_played array
+        await userRef.update({
+            quizzes_played: admin.firestore.FieldValue.arrayUnion(quizResult),
+        });
+
+        return res.status(200).json({ message: "Quiz result saved successfully." });
+    } catch (error) {
+        console.error("Error saving quiz result:", error);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+
 
 // Endpoint: Get Quiz Categories
 app.get("/quiz-categories", async (_req, res) => {
