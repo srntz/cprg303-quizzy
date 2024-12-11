@@ -4,9 +4,10 @@ import ProfileChartStats from "@/src/components/profile/ProfileChartStats";
 import ProfilePerformanceByCategory from "@/src/components/profile/ProfilePerformanceByCategory";
 import ProfileStats from "@/src/components/profile/ProfileStats";
 import ProfileUsername from "@/src/components/profile/ProfileUsername";
-import { getItem } from "@/src/utils/secure_storage";
+import { deleteItem, getItem } from "@/src/utils/secure_storage";
+import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
+import { Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function ProfileScreen() {
   const userApi = new UserApi();
@@ -42,6 +43,10 @@ export default function ProfileScreen() {
       console.error("Failed to fetch user profile:", error);
     }
   }
+  const handleSignOut = async () => {
+    await deleteItem("userId"); 
+    router.replace("/login");
+  };
 
   useEffect(() => {
     getUser();
@@ -60,6 +65,7 @@ export default function ProfileScreen() {
       </View>
     );
   }
+
 
   if (!user || !userStats) {
     // Handle the case where the user data couldn't be fetched
@@ -96,6 +102,9 @@ export default function ProfileScreen() {
           <ProfileStats points={userStats.totalPoints} worldRank={userStats.worldRank} bestCategory={userStats.bestCategory} />
           <ProfileChartStats data={userStats.quizzesPlayed} />
           <ProfilePerformanceByCategory data={userStats.topPerformanceByCategory} />
+          <TouchableOpacity style={styles.button} onPress={handleSignOut}>
+            <Text style={styles.buttonText}>Sign Out</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ScrollView>
@@ -104,6 +113,19 @@ export default function ProfileScreen() {
 const screenWidth = Dimensions.get("window").width;
 
 const styles = StyleSheet.create({
+  button: {
+    backgroundColor: "#FF3B30", // Red for sign out
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    alignItems: "center",
+    marginTop: 70,
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "600",
+  },
   scrollView: {
     flex: 1,
     backgroundColor: Colors.light.accent,
@@ -127,7 +149,7 @@ const styles = StyleSheet.create({
     width: screenWidth * 0.95,
     alignSelf: "center",
     marginTop: 100,
-    height: 1000,
+    height: 1100,
 
     elevation: 2,
     shadowColor: "#000",
