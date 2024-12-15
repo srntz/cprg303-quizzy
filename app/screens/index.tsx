@@ -54,7 +54,7 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </View>
       <View style={styles.popularContainer}>
-        <ScrollView>
+        <ScrollView style={{ marginBottom: 30 }}>
           <SectionTitle style={styles.sectionTitle} sectionTitle="Most Popular" />
           {popularQuizzes &&
             popularQuizzes.map((item) => {

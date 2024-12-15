@@ -31,7 +31,7 @@ export default function SearchScreen() {
         <SearchBox />
       </View>
       <View style={styles.categoryContainer}>
-        <ScrollView>
+        <ScrollView style={{ marginBottom: 60 }}>
           <SectionTitle sectionTitle="Categories" />
           <View style={styles.categoryCardContainer}>
             {categories.map((item) => (

@@ -25,8 +25,6 @@ export default function LoginPage() {
     error: false,
   });
 
-
-
   async function handleLogin() {
     let login;
     try {
@@ -43,17 +41,17 @@ export default function LoginPage() {
     }
 
     const userId = (login.data as ILoginData).id;
-    await saveItem('userId', userId);
+    await saveItem("userId", userId);
     const userData = await userApi.userProfileGet(userId);
     setCurrentUser(userData.data);
-    saveItem('avatar', userData.data.avatar);
-    saveItem('username', userData.data.username);
-    saveItem('email', userData.data.email);
+    saveItem("avatar", userData.data.avatar);
+    saveItem("username", userData.data.username);
+    saveItem("email", userData.data.email);
     router.replace("/screens");
   }
 
   return (
-     <StatusBarMarginLayout backgroundColor={Colors.light.accent} theme={"light"}>
+    <StatusBarMarginLayout backgroundColor={Colors.light.accent} theme={"light"}>
       <View
         style={{
           backgroundColor: Colors.light.accent,
@@ -63,7 +61,6 @@ export default function LoginPage() {
           gap: 30,
         }}
       >
-
         <Text
           style={{
             fontFamily: "Rubik_600SemiBold",
@@ -106,7 +103,7 @@ export default function LoginPage() {
 
         <Pressable style={styles.button} onPress={handleLogin}>
           <Text style={{ color: "white" }}>Login</Text>
-        </Pressable> */
+        </Pressable>
       </View>
     </StatusBarMarginLayout>
   );

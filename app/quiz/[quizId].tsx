@@ -119,8 +119,11 @@ export default function QuizPage() {
                     Back
                   </Text>
                 </Pressable>
+                <Text style={{ flex: 1, textAlign: "center", color: "white", fontWeight: "bold" }}>
+                  {quizData?.name}
+                </Text>
+                <View style={{ width: 70 }}></View>
               </View>
-              <Text>Category Here</Text>
               <View
                 style={{
                   flex: 1,
