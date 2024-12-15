@@ -1,35 +1,39 @@
+import { Quiz, QuizApi } from "@/api/generated";
 import { Colors } from "@/constants/Colors";
 import QuizCard from "@/src/components/card/QuizCard";
 import ProfileImage from "@/src/components/profile/ProfileImage";
 import SectionTitle from "@/src/components/text/SectionTitle";
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useEffect, useState } from "react";
-import { QuizApi } from "@/api/generated";
-import { IPopularQuiz } from "@/src/interfaces/IPopularQuiz";
 import { router } from "expo-router";
+import { useEffect, useState } from "react";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function HomeScreen() {
-  const [popularQuizzes, setPopularQuizzes] = useState<IPopularQuiz[]>([]);
+  const [popularQuizzes, setPopularQuizzes] = useState<Quiz[]>();
+
+  async function fetchPopularQuizzes() {
+    const api = new QuizApi();
+    const res = await api.popularQuizzesGet();
+    return res;
+  }
+
+  async function fetchRandomQuiz() {
+    const api = new QuizApi();
+    const res = await api.randomQuizGet();
+    router.push(`../quiz/${res.data.id}`);
+  }
+
 
   useEffect(() => {
-    async function fetchPopularQuizzes() {
-      const api = new QuizApi();
-      const res = await api.popularQuizzesGet();
-      return res;
-    }
-
     fetchPopularQuizzes().then((res) => {
       setPopularQuizzes(res.data);
     });
   }, []);
 
-  const handlePress = () => {
-    console.log("Pressed");
-  };
 
   function handleNavigate(quizId: string) {
     router.push(`../quiz/${quizId}`);
   }
+
 
   return (
     <View style={styles.container}>
@@ -38,33 +42,29 @@ export default function HomeScreen() {
           <Text style={styles.welcomeText}> WELCOME </Text>
           <Text style={styles.nameText}>John Doe</Text>
         </View>
-        <ProfileImage imageUrl="https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca" />
+        <ProfileImage />
       </View>
       <View style={styles.randomQuizContainer}>
+
         <View style={{}}>
           <Text style={styles.quickQuizText}>QUICK QUIZ</Text>
           <Text style={styles.startQuizText}>Start Random Quiz</Text>
         </View>
-        <TouchableOpacity onPress={handlePress}>
-          <Image
-            src="https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca"
-            alt="start quiz"
-            style={{ width: 70, height: 70, borderRadius: 50 }}
-          />
+        <TouchableOpacity onPress={fetchRandomQuiz}>
+          <span style={styles.quizIcon}>▶</span>
         </TouchableOpacity>
       </View>
       <View style={styles.popularContainer}>
         <ScrollView>
-          <SectionTitle sectionTitle="Most Popular" />
-          {popularQuizzes.map((item) => {
+          <SectionTitle style={styles.sectionTitle} sectionTitle="Most Popular" />
+          {popularQuizzes!.map((item) => {
             return (
               <QuizCard
                 key={item.id}
-                title={item.name}
-                imageUrl={"https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca"}
-                category={item.category_id}
-                onPress={() => handleNavigate(item.id)}
-                numberOfQuestions={item.questions.length}
+                title={item?.name ?? ''}
+                imageUrl={item.imageUrl ?? ''}
+                onPress={() => handleNavigate(item.id ?? "")}
+                numberOfQuestions={item.questions?.length ?? 0}
               />
             );
           })}
@@ -75,6 +75,9 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+  sectionTitle: {
+    paddingHorizontal: 10,
+  },
   container: {
     flex: 1,
     backgroundColor: Colors.light.accent,
@@ -134,4 +137,14 @@ const styles = StyleSheet.create({
     paddingBottom: 50,
     paddingHorizontal: 10,
   },
+  quizIcon: {
+    backgroundColor: '#fbc5d0',
+    padding: 14,
+    width: 20,
+    height: 20,
+    borderRadius: 100,
+    color: '#5d0d23',
+    fontSize: 16,
+    textAlign: 'center',
+  }
 });

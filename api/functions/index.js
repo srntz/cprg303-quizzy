@@ -1,7 +1,7 @@
 const cors = require("cors");
 const express = require("express");
 const admin = require("firebase-admin");
-const functions = require("firebase-functions");
+const functions = require("firebase-functions/v1");
 
 // Initialize Firebase Admin and Firestore
 admin.initializeApp();
@@ -212,18 +212,40 @@ app.get("/questions", async (req, res) => {
 });
 
 
-// Endpoint: Get Leaderboards
+// Endpoint: Get Leaderboards with Avatar
 app.get("/leaderboards", async (_req, res) => {
     try {
+        // Fetch leaderboards
         const leaderboardsSnapshot = await db.collection("leaderboards").get();
-        const leaderboards = leaderboardsSnapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-        }));
+        const leaderboards = [];
+
+        for (const doc of leaderboardsSnapshot.docs) {
+            const leaderboardData = doc.data();
+
+            // Fetch the avatars for each top player
+            const enrichedTopPlayers = await Promise.all(
+                leaderboardData.top_players.map(async (player) => {
+                    const userDoc = await db.collection("user_profiles").doc(player.userId).get();
+                    const userData = userDoc.exists ? userDoc.data() : {};
+
+                    return {
+                        ...player,
+                        avatar: userData?.avatar || null, // Attach avatar if it exists
+                    };
+                })
+            );
+
+            leaderboards.push({
+                id: doc.id,
+                ...leaderboardData,
+                top_players: enrichedTopPlayers,
+            });
+        }
 
         return res.status(200).json(leaderboards);
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        console.error("Error fetching leaderboards:", error);
+        return res.status(500).json({ error: "Internal Server Error" });
     }
 });
 
@@ -271,7 +293,6 @@ app.get("/quizzes-by-category", async (req, res) => {
     }
 });
 
-// Endpoint: User Stats
 // Endpoint: User Stats
 app.get("/user-stats", async (req, res) => {
     const userId = req.query.userId;
@@ -373,6 +394,51 @@ app.get("/user-stats", async (req, res) => {
         });
     } catch (error) {
         console.error("Error fetching user stats:", error);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+// Endpoint: Get Random Quiz
+app.get("/random-quiz", async (_req, res) => {
+    try {
+        // Fetch all quizzes
+        const quizzesSnapshot = await db.collection("quizzes").get();
+
+        if (quizzesSnapshot.empty) {
+            return res.status(404).json({ error: "No quizzes found." });
+        }
+
+        // Get a random quiz
+        const quizzes = quizzesSnapshot.docs;
+        const randomQuizDoc = quizzes[Math.floor(Math.random() * quizzes.length)];
+
+        const randomQuizData = randomQuizDoc.data();
+
+        // Fetch questions for the random quiz
+        const questionsArray = randomQuizData.questions || [];
+        let questions = [];
+
+        if (questionsArray.length > 0) {
+            const questionIds = questionsArray.map((q) => q.id);
+            const questionsSnapshot = await db.collection("questions")
+                .where("__name__", "in", questionIds)
+                .get();
+
+            questions = questionsSnapshot.docs.map((questionDoc) => ({
+                id: questionDoc.id,
+                ...questionDoc.data(),
+            }));
+        }
+
+        const randomQuiz = {
+            id: randomQuizDoc.id,
+            ...randomQuizData,
+            questions,
+        };
+
+        return res.status(200).json(randomQuiz);
+    } catch (error) {
+        console.error("Error fetching random quiz:", error);
         return res.status(500).json({ error: "Internal Server Error" });
     }
 });

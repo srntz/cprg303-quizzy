@@ -54,7 +54,7 @@ export default function RootLayout() {
   } else {
     return (
       <AuthenticationContext.Provider value={{ data: currentUser, setCurrentUser: setCurrentUser }}>
-        <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme} children={undefined}>
+        <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
           <Stack>
             <Stack.Screen name={"login"} options={{ headerShown: false }} />
             <Stack.Screen name={"screens"} options={{ headerShown: false }} />

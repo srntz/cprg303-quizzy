@@ -14,7 +14,7 @@ export default function QuizCard({
   title: string;
   imageUrl: string;
   onPress?: () => void;
-  category: string;
+  category?: string;
   numberOfQuestions: number;
 }) {
   return (

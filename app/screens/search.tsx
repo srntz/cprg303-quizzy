@@ -1,50 +1,30 @@
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { QuizApi, QuizCategory } from "@/api/generated";
 import { Colors } from "@/constants/Colors";
 import CategoryCard from "@/src/components/card/CategoryCard";
-import SectionTitle from "@/src/components/text/SectionTitle";
 import PageTitle from "@/src/components/text/PageTitle";
+import SectionTitle from "@/src/components/text/SectionTitle";
 import SearchBox from "@/src/SearchBox";
+import { useEffect, useState } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 
-const data = [
-  {
-    id: "1",
-    categoryName: "Food",
-    numberOfQuestions: 12,
-    imageUrl: "https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca",
-  },
-  {
-    id: "2",
-    categoryName: "Math",
-    numberOfQuestions: 20,
-    imageUrl: "https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca",
-  },
-  {
-    id: "3",
-    categoryName: "History",
-    numberOfQuestions: 9,
-    imageUrl: "https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca",
-  },
-  {
-    id: "4",
-    categoryName: "Science",
-    numberOfQuestions: 11,
-    imageUrl: "https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca",
-  },
-  {
-    id: "5",
-    categoryName: "Technology",
-    numberOfQuestions: 19,
-    imageUrl: "https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca",
-  },
-  {
-    id: "6",
-    categoryName: "Sport",
-    numberOfQuestions: 15,
-    imageUrl: "https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca",
-  },
-];
+
+
 
 export default function SearchScreen() {
+  const [categories, setCategories] = useState<QuizCategory[]>([]);
+  async function fetchCategories() {
+    const api = new QuizApi();
+    const res = await api.quizCategoriesGet();
+    return res;
+  }
+
+  useEffect(() => {
+    fetchCategories().then((res) => {
+      setCategories(res.data);
+    });
+  }, []);
+
+
   const handlePress = () => {
     console.log("Pressed");
   };
@@ -59,13 +39,13 @@ export default function SearchScreen() {
         <ScrollView>
           <SectionTitle sectionTitle="Categories" />
           <View style={styles.categoryCardContainer}>
-            {data.map((item) => (
+            {categories.map((item) => (
               <View key={item.id} style={styles.categoryCard}>
                 <CategoryCard
-                  categoryName={item.categoryName}
+                  categoryName={item.name ?? ''}
                   onPress={handlePress}
-                  numberOfQuestions={item.numberOfQuestions}
-                  imageUrl={item.imageUrl}
+                  numberOfQuestions={1}
+                  imageUrl={item.imageUrl ?? ''}
                 />
               </View>
             ))}

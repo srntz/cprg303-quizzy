@@ -1,20 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useLocalSearchParams } from "expo-router";
-import { Pressable, Text, View } from "react-native";
+import { Quiz, QuizApi, SaveQuizResultRequestScoreBreakdownInner } from "@/api/generated";
 import { Colors } from "@/constants/Colors";
-import StatusBarMarginLayout from "@/src/components/utils/StatusBarMarginLayout";
-import { router } from "expo-router";
-import { QuizApi, SaveQuizResultRequestScoreBreakdownInner } from "@/api/generated";
-import QuestionCard from "@/src/components/card/QuestionCard";
 import AnswerCard from "@/src/components/card/AnswerCard";
-import { IQuiz } from "@/src/interfaces/IQuiz";
+import QuestionCard from "@/src/components/card/QuestionCard";
+import StatusBarMarginLayout from "@/src/components/utils/StatusBarMarginLayout";
+import { router, useLocalSearchParams } from "expo-router";
+import React, { useEffect, useRef, useState } from "react";
+import { Pressable, Text, View } from "react-native";
 
-export default function Quiz() {
+export default function QuizPage() {
   const { quizId } = useLocalSearchParams();
   const interval = useRef<ReturnType<typeof setInterval> | undefined>();
 
   const [timer, setTimer] = useState<number>(30);
-  const [quizData, setQuizData] = useState<IQuiz>();
+  const [quizData, setQuizData] = useState<Quiz>();
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [results, setResults] = useState<{
     total_score: number;
@@ -31,19 +29,17 @@ export default function Quiz() {
       const api = new QuizApi();
       try {
         const res = await api.quizWithQuestionsGet(quizId as string);
-        return res;
+        setQuizData(res.data ?? []);
       } catch (e) {
         return "Error";
       }
     }
 
-    getQuizData().then((res) => {
-      setQuizData(res.data);
-    });
+    getQuizData();
   }, []);
 
   useEffect(() => {
-    if (currentQuestion < (quizData?.questions.length as number) || currentQuestion === 0) {
+    if (currentQuestion < (quizData?.questions?.length as number) || currentQuestion === 0) {
       if (interval.current) {
         clearInterval(interval.current as ReturnType<typeof setInterval>);
       }
@@ -60,7 +56,7 @@ export default function Quiz() {
   }, [isAnswerTimeout]);
 
   function handleNextQuestion() {
-    if (currentQuestion < (quizData?.questions.length as number)) {
+    if (currentQuestion < (quizData?.questions?.length as number)) {
       setTimer(30);
       setCurrentQuestion((prev) => prev + 1);
       setIsAnswerTimeout(false);
@@ -94,7 +90,7 @@ export default function Quiz() {
   return (
     <StatusBarMarginLayout backgroundColor={Colors.light.accent} theme={"light"}>
       <View style={{ backgroundColor: Colors.light.accent, flex: 1, alignItems: "center" }}>
-        {currentQuestion < (quizData?.questions.length as number) || currentQuestion === 0 ? (
+        {currentQuestion < (quizData?.questions?.length as number) || currentQuestion === 0 ? (
           <>
             <View style={{ flex: 1, width: "100%", paddingHorizontal: 12 }}>
               <View
@@ -124,6 +120,7 @@ export default function Quiz() {
                   </Text>
                 </Pressable>
               </View>
+              <p>Category Here</p>
               <View
                 style={{
                   flex: 1,
@@ -156,28 +153,28 @@ export default function Quiz() {
               {quizData && (
                 <>
                   <View style={{ width: "85%" }}>
-                    <QuestionCard question={quizData.questions[currentQuestion].question_text} />
+                    <QuestionCard question={quizData?.questions![currentQuestion]!.question_text ?? ''} />
                   </View>
                   <View style={{ flex: 1, width: "85%" }}>
                     {!isAnswerTimeout
-                      ? quizData.questions[currentQuestion].answers.map((item, index) => (
-                          <AnswerCard
-                            key={index}
-                            answer={item.option}
-                            answerOption={`${index + 1})`}
-                            onPress={() =>
-                              handleAnswer(quizData?.questions[currentQuestion].id, item.is_correct)
-                            }
-                          />
-                        ))
-                      : quizData.questions[currentQuestion].answers.map((item, index) => (
-                          <AnswerCard
-                            key={index}
-                            answer={item.option}
-                            answerOption={`${index + 1})`}
-                            correct={item.is_correct}
-                          />
-                        ))}
+                      ? quizData!.questions![currentQuestion]!.answers!.map((item, index) => (
+                        <AnswerCard
+                          key={index}
+                          answer={item.option ?? ''}
+                          answerOption={`${index + 1})`}
+                          onPress={() =>
+                            handleAnswer(quizData!.questions![currentQuestion]!.id!, item.is_correct ?? false)
+                          }
+                        />
+                      ))
+                      : quizData!.questions![currentQuestion]!.answers!.map((item, index) => (
+                        <AnswerCard
+                          key={index}
+                          answer={item.option ?? ''}
+                          answerOption={`${index + 1})`}
+                          correct={item.is_correct}
+                        />
+                      ))}
                   </View>
                   <Pressable
                     style={{
