@@ -1,12 +1,12 @@
 import React from "react";
-import CardContainer from "../card/CardContainer";
 import { StyleSheet, Text, View } from "react-native";
+import CardContainer from "../card/CardContainer";
 import ProfileImage from "../profile/ProfileImage";
 
 export default function User({ userName, points }: { userName: string; points: number }) {
   return (
     <CardContainer disabled={true} style={styles.container}>
-      <ProfileImage imageUrl="https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca" />
+      <ProfileImage />
       <View style={styles.textContainer}>
         <Text style={styles.userName}>{userName}</Text>
         <Text style={styles.point}>{points} points</Text>

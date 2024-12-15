@@ -16,7 +16,6 @@ export default function ProfileScreen() {
   const [userStats, setUserStats] = useState<any | undefined>(undefined); // Adjust the type as per your `user` structure
   const [loading, setLoading] = useState(true); // To track the loading state
 
-
   async function getUser() {
     await getUserProfile();
     await getUserStats();
@@ -44,7 +43,7 @@ export default function ProfileScreen() {
     }
   }
   const handleSignOut = async () => {
-    await deleteItem("userId"); 
+    await deleteItem("userId");
     router.replace("/login");
   };
 
@@ -65,7 +64,6 @@ export default function ProfileScreen() {
       </View>
     );
   }
-
 
   if (!user || !userStats) {
     // Handle the case where the user data couldn't be fetched
@@ -99,7 +97,11 @@ export default function ProfileScreen() {
               paddingBottom: 20,
             }}
           />
-          <ProfileStats points={userStats.totalPoints} worldRank={userStats.worldRank} bestCategory={userStats.bestCategory} />
+          <ProfileStats
+            points={userStats.totalPoints}
+            worldRank={userStats.worldRank}
+            bestCategory={userStats.bestCategory}
+          />
           <ProfileChartStats data={userStats.quizzesPlayed} />
           <ProfilePerformanceByCategory data={userStats.topPerformanceByCategory} />
           <TouchableOpacity style={styles.button} onPress={handleSignOut}>
@@ -129,7 +131,6 @@ const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
     backgroundColor: Colors.light.accent,
-
   },
   outerContainer: {
     paddingBottom: 60,
@@ -144,7 +145,7 @@ const styles = StyleSheet.create({
   profileContainer: {
     backgroundColor: "white",
     borderRadius: 20,
-    position: 'absolute',
+    position: "absolute",
     alignItems: "center",
     width: screenWidth * 0.95,
     alignSelf: "center",

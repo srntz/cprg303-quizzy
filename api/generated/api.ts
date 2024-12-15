@@ -47,6 +47,12 @@ export interface LeaderboardsInner {
      * @type {string}
      * @memberof LeaderboardsInner
      */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LeaderboardsInner
+     */
     'category'?: string;
     /**
      * 
@@ -79,6 +85,18 @@ export interface LeaderboardsInnerTopPlayersInner {
      * @memberof LeaderboardsInnerTopPlayersInner
      */
     'score'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof LeaderboardsInnerTopPlayersInner
+     */
+    'userId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LeaderboardsInnerTopPlayersInner
+     */
+    'avatar'?: string;
 }
 /**
  * 
@@ -179,13 +197,19 @@ export interface Quiz {
      * @type {string}
      * @memberof Quiz
      */
-    'image_url'?: string;
+    'name'?: string;
     /**
      * 
-     * @type {QuizCategory}
+     * @type {string}
      * @memberof Quiz
      */
-    'category'?: QuizCategory;
+    'imageUrl'?: string;
+    /**
+     * 
+     * @type {QuizCategoryId}
+     * @memberof Quiz
+     */
+    'category_id'?: QuizCategoryId;
     /**
      * 
      * @type {number}
@@ -206,15 +230,40 @@ export interface Quiz {
  */
 export interface QuizCategory {
     /**
-     * 
+     * The unique identifier for the quiz category.
      * @type {string}
      * @memberof QuizCategory
      */
     'id'?: string;
     /**
-     * 
+     * The name of the quiz category.
      * @type {string}
      * @memberof QuizCategory
+     */
+    'name'?: string;
+    /**
+     * The URL for an image representing the quiz category.
+     * @type {string}
+     * @memberof QuizCategory
+     */
+    'imageUrl'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface QuizCategoryId
+ */
+export interface QuizCategoryId {
+    /**
+     * 
+     * @type {string}
+     * @memberof QuizCategoryId
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof QuizCategoryId
      */
     'name'?: string;
 }
@@ -887,6 +936,36 @@ export const QuizApiAxiosParamCreator = function (configuration?: Configuration)
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Retrieve a random quiz from the collection of quizzes.
+         * @summary Get Random Quiz
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        randomQuizGet: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/random-quiz`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -960,6 +1039,18 @@ export const QuizApiFp = function(configuration?: Configuration) {
             const localVarOperationServerBasePath = operationServerMap['QuizApi.quizzesByCategoryGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
+        /**
+         * Retrieve a random quiz from the collection of quizzes.
+         * @summary Get Random Quiz
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async randomQuizGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Quiz>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.randomQuizGet(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['QuizApi.randomQuizGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
     }
 };
 
@@ -1017,6 +1108,15 @@ export const QuizApiFactory = function (configuration?: Configuration, basePath?
          */
         quizzesByCategoryGet(categoryId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<Quiz>> {
             return localVarFp.quizzesByCategoryGet(categoryId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve a random quiz from the collection of quizzes.
+         * @summary Get Random Quiz
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        randomQuizGet(options?: RawAxiosRequestConfig): AxiosPromise<Quiz> {
+            return localVarFp.randomQuizGet(options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1084,6 +1184,17 @@ export class QuizApi extends BaseAPI {
      */
     public quizzesByCategoryGet(categoryId: string, options?: RawAxiosRequestConfig) {
         return QuizApiFp(this.configuration).quizzesByCategoryGet(categoryId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieve a random quiz from the collection of quizzes.
+     * @summary Get Random Quiz
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof QuizApi
+     */
+    public randomQuizGet(options?: RawAxiosRequestConfig) {
+        return QuizApiFp(this.configuration).randomQuizGet(options).then((request) => request(this.axios, this.basePath));
     }
 }
 

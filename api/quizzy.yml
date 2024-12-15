@@ -19,32 +19,32 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SaveQuizResultRequest'
+              $ref: "#/components/schemas/SaveQuizResultRequest"
       responses:
-        '200':
+        "200":
           description: Quiz result saved successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SuccessResponse'
-        '400':
+                $ref: "#/components/schemas/SuccessResponse"
+        "400":
           description: Missing or invalid request data
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '404':
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
           description: User not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /login:
     post:
@@ -57,32 +57,32 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LoginRequest'
+              $ref: "#/components/schemas/LoginRequest"
       responses:
-        '200':
+        "200":
           description: Login successful
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LoginResponse'
-        '401':
+                $ref: "#/components/schemas/LoginResponse"
+        "401":
           description: Invalid credentials
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
         default:
           description: Default error
           content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/ErrorResponse'
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 
   /user-profile:
     get:
@@ -98,24 +98,24 @@ paths:
             type: string
           description: The ID of the user whose profile is requested.
       responses:
-        '200':
+        "200":
           description: User profile details
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserProfile'
-        '404':
+                $ref: "#/components/schemas/UserProfile"
+        "404":
           description: User not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /quiz-categories:
     get:
@@ -124,18 +124,18 @@ paths:
       summary: Get Quiz Categories
       description: Retrieve a list of available quiz categories.
       responses:
-        '200':
+        "200":
           description: List of quiz categories
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/QuizCategories'
-        '500':
+                $ref: "#/components/schemas/QuizCategories"
+        "500":
           description: Server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /questions:
     get:
@@ -151,24 +151,24 @@ paths:
             type: string
           description: The ID of the category to retrieve questions for.
       responses:
-        '200':
+        "200":
           description: List of questions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Questions'
-        '404':
+                $ref: "#/components/schemas/Questions"
+        "404":
           description: No questions found for the given category
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /leaderboards:
     get:
@@ -177,18 +177,18 @@ paths:
       summary: Get Global Leaderboards
       description: Retrieve global leaderboards by quiz category.
       responses:
-        '200':
+        "200":
           description: Leaderboards data
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Leaderboards'
-        '500':
+                $ref: "#/components/schemas/Leaderboards"
+        "500":
           description: Server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /popular-quizzes:
     get:
@@ -197,18 +197,18 @@ paths:
       summary: Get Popular Quizzes
       description: Retrieve a list of the most popular quizzes.
       responses:
-        '200':
+        "200":
           description: List of popular quizzes
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/QuizList'
-        '500':
+                $ref: "#/components/schemas/QuizList"
+        "500":
           description: Server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /quizzes-by-category:
     get:
@@ -224,25 +224,43 @@ paths:
             type: string
           description: The ID of the category to retrieve quizzes for.
       responses:
-        '200':
+        "200":
           description: List of quizzes for the given category
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/QuizList'
-        '404':
+                $ref: "#/components/schemas/QuizList"
+        "404":
           description: No quizzes found for the given category
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
+                $ref: "#/components/schemas/ErrorResponse"
+  /random-quiz:
+    get:
+      tags:
+        - Quiz
+      summary: Get Random Quiz
+      description: Retrieve a random quiz from the collection of quizzes.
+      responses:
+        "200":
+          description: Random quiz details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Quiz"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
   /quiz-with-questions:
     get:
       tags:
@@ -257,24 +275,24 @@ paths:
             type: string
           description: The ID of the quiz to retrieve.
       responses:
-        '200':
+        "200":
           description: Quiz with questions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Quiz'
-        '404':
+                $ref: "#/components/schemas/Quiz"
+        "404":
           description: Quiz not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /user-stats:
     get:
@@ -290,24 +308,24 @@ paths:
             type: string
           description: The ID of the user whose stats are requested.
       responses:
-        '200':
+        "200":
           description: User stats
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserStats'
-        '404':
+                $ref: "#/components/schemas/UserStats"
+        "404":
           description: User not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
 components:
   schemas:
@@ -403,13 +421,20 @@ components:
       properties:
         id:
           type: string
+          description: The unique identifier for the quiz category.
         name:
           type: string
+          description: The name of the quiz category.
+        imageUrl:
+          type: string
+          format: uri
+          description: The URL for an image representing the quiz category.
+          example: "https://example.com/path-to-image.jpg"
 
     QuizCategories:
       type: array
       items:
-        $ref: '#/components/schemas/QuizCategory'
+        $ref: "#/components/schemas/QuizCategory"
 
     Questions:
       type: array
@@ -437,6 +462,8 @@ components:
       items:
         type: object
         properties:
+          id:
+            type: string
           category:
             type: string
           top_players:
@@ -450,16 +477,22 @@ components:
                   type: integer
                 score:
                   type: integer
+                userId:
+                  type: string
+                avatar:
+                  type: string
 
     Quiz:
       type: object
       properties:
         id:
           type: string
-        image_url:
+        name:
+          type: string
+        imageUrl:
           type: string
           format: uri
-        category:
+        category_id:
           type: object
           properties:
             id:
@@ -490,7 +523,7 @@ components:
     QuizList:
       type: array
       items:
-        $ref: '#/components/schemas/Quiz'
+        $ref: "#/components/schemas/Quiz"
 
     SuccessResponse:
       type: object
@@ -546,4 +579,3 @@ components:
                 type: string
               score:
                 type: integer
-              

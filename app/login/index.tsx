@@ -2,7 +2,6 @@ import { AuthenticationApi, UserApi } from "@/api/generated";
 import { Colors } from "@/constants/Colors";
 import StatusBarMarginLayout from "@/src/components/utils/StatusBarMarginLayout";
 import { useAuthenticationContext } from "@/src/context/AuthenticationContext";
-import { IQuizzesPlayed, IUserData } from "@/src/interfaces/IUserData";
 import { saveItem } from "@/src/utils/secure_storage";
 import { useRouter } from "expo-router";
 import { useState } from "react";
@@ -42,22 +41,17 @@ export default function LoginPage() {
     }
 
     const userId = (login.data as ILoginData).id;
-    await saveItem('userId', userId);
+    await saveItem("userId", userId);
     const userData = await userApi.userProfileGet(userId);
-    const userObject: IUserData = {
-      email: userData.data.email as string,
-      id: userData.data.id as string,
-      quizzes_played: userData.data.quizzes_played as IQuizzesPlayed[],
-      username: "placeholder username",
-      country: "placeholder country",
-    };
-
-    setCurrentUser(userObject);
+    setCurrentUser(userData.data);
+    saveItem("avatar", userData.data.avatar);
+    saveItem("username", userData.data.username);
+    saveItem("email", userData.data.email);
     router.replace("/screens");
   }
 
   return (
-     <StatusBarMarginLayout backgroundColor={Colors.light.accent} theme={"light"}>
+    <StatusBarMarginLayout backgroundColor={Colors.light.accent} theme={"light"}>
       <View
         style={{
           backgroundColor: Colors.light.accent,
@@ -67,7 +61,6 @@ export default function LoginPage() {
           gap: 30,
         }}
       >
-
         <Text
           style={{
             fontFamily: "Rubik_600SemiBold",
@@ -110,7 +103,7 @@ export default function LoginPage() {
 
         <Pressable style={styles.button} onPress={handleLogin}>
           <Text style={{ color: "white" }}>Login</Text>
-        </Pressable> */
+        </Pressable>
       </View>
     </StatusBarMarginLayout>
   );

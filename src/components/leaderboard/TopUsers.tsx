@@ -1,40 +1,28 @@
+import { LeaderboardsInnerTopPlayersInner } from "@/api/generated";
 import React from "react";
 import { StyleSheet } from "react-native";
 import CardContainer from "../card/CardContainer";
 import ProfileUsername from "../profile/ProfileUsername";
 
-interface Player {
-  username: string;
-  rank: number;
-  score: number;
+interface TopUsersProps {
+  topPlayers: LeaderboardsInnerTopPlayersInner[]; // Make topPlayers optional
 }
 
-interface TopUsersProps {
-  topPlayers: Player[];
-}
 
 export default function TopUsers({ topPlayers }: TopUsersProps) {
   return (
     <CardContainer style={styles.contaier} disabled={true}>
-      {topPlayers.map((player) => (
-        <ProfileUsername
-          key={player.rank}
-          username={player.username}
-          imageUrl={`https://www.aiscribbles.com/img/variant/large-preview/${player.rank}/?v=7ce9ca`}
-        />
-      ))}
-      <ProfileUsername
-        username="John Doe"
-        imageUrl="https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca"
-      />
-      <ProfileUsername
-        username="Madely Dias"
-        imageUrl="https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca"
-      />
-      <ProfileUsername
-        username="Justin Bator"
-        imageUrl="https://www.aiscribbles.com/img/variant/large-preview/32046/?v=7ce9ca"
-      />
+      {topPlayers.map((player, index) => {
+        console.log(player);
+        return (
+          <ProfileUsername
+            rank={index+1}
+            imageSize={60}
+            fontSize={12}
+            username={player.username ?? ''}
+            imageUrl={player.avatar ?? ''} />
+        );
+      })}
     </CardContainer>
   );
 }

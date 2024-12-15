@@ -1,82 +1,42 @@
 [
   {
       "id": "category1",
-      "name": "Science"
+      "name": "Science",
+      "imageUrl": "https://plus.unsplash.com/premium_photo-1661432575489-b0400f4fea58?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8U2NpZW5jZXxlbnwwfHwwfHx8MA%3D%3D"
   },
   {
       "id": "category2",
-      "name": "History"
+      "name": "History",
+      "imageUrl": "https://plus.unsplash.com/premium_photo-1682125784386-d6571f1ac86a?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8SGlzdG9yeXxlbnwwfHwwfHx8MA%3D%3D"
   },
   {
       "id": "category3",
-      "name": "Technology"
+      "name": "Technology",
+      "imageUrl": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8VGVjaG5vbG9neXxlbnwwfHwwfHx8MA%3D%3D"
   },
   {
       "id": "category4",
-      "name": "Art"
+      "name": "Art",
+      "imageUrl": "https://plus.unsplash.com/premium_photo-1664272436668-78437b92929e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8QXJ0fGVufDB8fDB8fHww"
   },
   {
       "id": "category5",
-      "name": "Sports"
+      "name": "Sports",
+      "imageUrl": "https://plus.unsplash.com/premium_photo-1685303469251-4ee0ea014bb3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8U3BvcnRzfGVufDB8fDB8fHww"
   },
   {
       "id": "category6",
-      "name": "Music"
+      "name": "Music",
+      "imageUrl": "https://images.unsplash.com/photo-1471478331149-c72f17e33c73?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8TXVzaWN8ZW58MHx8MHx8fDA%3D"
   },
   {
       "id": "category7",
-      "name": "Literature"
+      "name": "Literature",
+      "imageUrl": "https://plus.unsplash.com/premium_photo-1677567996070-68fa4181775a?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8TGl0ZXJhdHVyZXxlbnwwfHwwfHx8MA%3D%3D"
   },
   {
       "id": "category8",
-      "name": "Travel"
-  },
-  {
-      "id": "category9",
-      "name": "Food"
-  },
-  {
-      "id": "category10",
-      "name": "Health"
-  },
-  {
-      "id": "category11",
-      "name": "Education"
-  },
-  {
-      "id": "category12",
-      "name": "Business"
-  },
-  {
-      "id": "category13",
-      "name": "Environment"
-  },
-  {
-      "id": "category14",
-      "name": "Philosophy"
-  },
-  {
-      "id": "category15",
-      "name": "Psychology"
-  },
-  {
-      "id": "category16",
-      "name": "Politics"
-  },
-  {
-      "id": "category17",
-      "name": "Gaming"
-  },
-  {
-      "id": "category18",
-      "name": "Movies"
-  },
-  {
-      "id": "category19",
-      "name": "Fashion"
-  },
-  {
-      "id": "category20",
-      "name": "Fitness"
+      "name": "Travel",
+      "imageUrl": "https://plus.unsplash.com/premium_photo-1664368832311-7fe635e32c7c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8VHJhdmVsfGVufDB8fDB8fHww"
   }
 ]

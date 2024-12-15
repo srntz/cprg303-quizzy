@@ -3,8 +3,110 @@
     "id": "leaderboard1",
     "category": "Science",
     "top_players": [
-      { "username": "UserOne", "rank": 1, "score": 80 },
-      { "username": "UserTwo", "rank": 2, "score": 60 }
+      { "username": "UserOne", "rank": 1, "score": 80, "userId": "1" },
+      { "username": "UserTwo", "rank": 2, "score": 60, "userId": "2" },
+      { "username": "ScienceWhiz", "rank": 3, "score": 60, "userId": "7" },
+      { "username": "Brainiac101", "rank": 4, "score": 55, "userId": "4" },
+      { "username": "NatureFan", "rank": 5, "score": 50, "userId": "11" }
+    ]
+  },
+  {
+    "id": "leaderboard2",
+    "category": "History",
+    "top_players": [
+      { "username": "HistoryBuff", "rank": 1, "score": 95, "userId": "6" },
+      { "username": "HistoryEnthusiast", "rank": 2, "score": 90, "userId": "14" },
+      { "username": "UserThree", "rank": 3, "score": 85, "userId": "3" },
+      { "username": "DIYer", "rank": 4, "score": 75, "userId": "17" },
+      { "username": "PuzzleFanatic", "rank": 5, "score": 70, "userId": "3" }
+    ]
+  },
+  {
+    "id": "leaderboard3",
+    "category": "Math",
+    "top_players": [
+      { "username": "MathWizard", "rank": 1, "score": 92, "userId": "13" },
+      { "username": "KnowledgeHunter", "rank": 2, "score": 88, "userId": "5" },
+      { "username": "Brainiac101", "rank": 3, "score": 85, "userId": "4" },
+      { "username": "GamerGeek", "rank": 4, "score": 80, "userId": "15" },
+      { "username": "TechGuru", "rank": 5, "score": 75, "userId": "9" }
+    ]
+  },
+  {
+    "id": "leaderboard4",
+    "category": "Technology",
+    "top_players": [
+      { "username": "TechGuru", "rank": 1, "score": 95, "userId": "9" },
+      { "username": "GamerGeek", "rank": 2, "score": 88, "userId": "15" },
+      { "username": "UserFour", "rank": 3, "score": 85, "userId": "4" },
+      { "username": "UserTwo", "rank": 4, "score": 75, "userId": "2" },
+      { "username": "UserSix", "rank": 5, "score": 70, "userId": "6" }
+    ]
+  },
+  {
+    "id": "leaderboard5",
+    "category": "Art",
+    "top_players": [
+      { "username": "ArtLover", "rank": 1, "score": 95, "userId": "8" },
+      { "username": "NatureFan", "rank": 2, "score": 90, "userId": "11" },
+      { "username": "MusicLover", "rank": 3, "score": 88, "userId": "12" },
+      { "username": "DIYer", "rank": 4, "score": 85, "userId": "17" },
+      { "username": "UserThree", "rank": 5, "score": 80, "userId": "3" }
+    ]
+  },
+  {
+    "id": "leaderboard6",
+    "category": "Movies",
+    "top_players": [
+      { "username": "MovieBuff", "rank": 1, "score": 98, "userId": "10" },
+      { "username": "GamerGeek", "rank": 2, "score": 95, "userId": "15" },
+      { "username": "PuzzleFanatic", "rank": 3, "score": 90, "userId": "3" },
+      { "username": "UserTwo", "rank": 4, "score": 88, "userId": "2" },
+      { "username": "HistoryBuff", "rank": 5, "score": 85, "userId": "6" }
+    ]
+  },
+  {
+    "id": "leaderboard7",
+    "category": "Food",
+    "top_players": [
+      { "username": "Foodie", "rank": 1, "score": 95, "userId": "16" },
+      { "username": "DIYer", "rank": 2, "score": 90, "userId": "17" },
+      { "username": "MusicLover", "rank": 3, "score": 85, "userId": "12" },
+      { "username": "UserFour", "rank": 4, "score": 80, "userId": "4" },
+      { "username": "NatureFan", "rank": 5, "score": 78, "userId": "11" }
+    ]
+  },
+  {
+    "id": "leaderboard8",
+    "category": "Music",
+    "top_players": [
+      { "username": "MusicLover", "rank": 1, "score": 92, "userId": "12" },
+      { "username": "UserFive", "rank": 2, "score": 89, "userId": "5" },
+      { "username": "ArtLover", "rank": 3, "score": 87, "userId": "8" },
+      { "username": "UserThree", "rank": 4, "score": 85, "userId": "3" },
+      { "username": "UserSix", "rank": 5, "score": 80, "userId": "6" }
+    ]
+  },
+  {
+    "id": "leaderboard9",
+    "category": "Nature",
+    "top_players": [
+      { "username": "NatureFan", "rank": 1, "score": 95, "userId": "11" },
+      { "username": "UserSeven", "rank": 2, "score": 90, "userId": "7" },
+      { "username": "DIYer", "rank": 3, "score": 88, "userId": "17" },
+      { "username": "ArtLover", "rank": 4, "score": 85, "userId": "8" },
+      { "username": "UserFour", "rank": 5, "score": 80, "userId": "4" }
+    ]
+  },
+  {
+    "id": "leaderboard10",
+    "category": "Gaming",
+    "top_players": [
+      { "username": "GamerGeek", "rank": 1, "score": 98, "userId": "15" },
+      { "username": "TechGuru", "rank": 2, "score": 95, "userId": "9" },
+      { "username": "UserOne", "rank": 3, "score": 92, "userId": "1" },
+      { "username": "UserTwo", "rank": 4, "score": 90, "userId": "2" },
+      { "username": "PuzzleFanatic", "rank": 5, "score": 88, "userId": "3" }
     ]
   }
 ]
