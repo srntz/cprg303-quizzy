@@ -5,7 +5,7 @@ import TopUsers from "@/src/components/leaderboard/TopUsers";
 import PageTitle from "@/src/components/text/PageTitle";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
-import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Leaderboard() {
   const leaderboardsApi = new LeaderboardsApi();
@@ -22,29 +22,37 @@ export default function Leaderboard() {
     fetchLeaderboards();
   }, []);
 
-  if(loading)
-    return(<View><p>Loading....</p></View>)
+  if (loading)
+    return (
+      <View>
+        <Text>Loading....</Text>
+      </View>
+    );
 
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <PageTitle pageTitle="Leaderboard" />
       </View>
-      <ScrollView style={styles.leaderboardContainer} contentContainerStyle={styles.scrollContainer}>
+      <ScrollView
+        style={styles.leaderboardContainer}
+        contentContainerStyle={styles.scrollContainer}
+      >
         {leaderboards.map((leaderboard) => (
-          <TouchableOpacity onPress={() =>
-            router.push({
-              pathname: "../leaderboardByCategory", // Adjust to match your route
-              params: { leaderboard: JSON.stringify(leaderboard) }, // Pass parameters
-            })
-          }>
-            <View key={leaderboard.id} >
+          <TouchableOpacity
+            key={leaderboard.id}
+            onPress={() =>
+              router.push({
+                pathname: "../leaderboardByCategory", // Adjust to match your route
+                params: { leaderboard: JSON.stringify(leaderboard) }, // Pass parameters
+              })
+            }
+          >
+            <View>
               <LeadCategory leadCategory={leaderboard.category ?? ""} />
               <TopUsers topPlayers={leaderboard.top_players?.slice(0, 3) ?? []} />
             </View>
-
           </TouchableOpacity>
-
         ))}
       </ScrollView>
     </View>

@@ -120,7 +120,7 @@ export default function QuizPage() {
                   </Text>
                 </Pressable>
               </View>
-              <p>Category Here</p>
+              <Text>Category Here</Text>
               <View
                 style={{
                   flex: 1,
@@ -153,28 +153,33 @@ export default function QuizPage() {
               {quizData && (
                 <>
                   <View style={{ width: "85%" }}>
-                    <QuestionCard question={quizData?.questions![currentQuestion]!.question_text ?? ''} />
+                    <QuestionCard
+                      question={quizData?.questions![currentQuestion]!.question_text ?? ""}
+                    />
                   </View>
                   <View style={{ flex: 1, width: "85%" }}>
                     {!isAnswerTimeout
                       ? quizData!.questions![currentQuestion]!.answers!.map((item, index) => (
-                        <AnswerCard
-                          key={index}
-                          answer={item.option ?? ''}
-                          answerOption={`${index + 1})`}
-                          onPress={() =>
-                            handleAnswer(quizData!.questions![currentQuestion]!.id!, item.is_correct ?? false)
-                          }
-                        />
-                      ))
+                          <AnswerCard
+                            key={index}
+                            answer={item.option ?? ""}
+                            answerOption={`${index + 1})`}
+                            onPress={() =>
+                              handleAnswer(
+                                quizData!.questions![currentQuestion]!.id!,
+                                item.is_correct ?? false,
+                              )
+                            }
+                          />
+                        ))
                       : quizData!.questions![currentQuestion]!.answers!.map((item, index) => (
-                        <AnswerCard
-                          key={index}
-                          answer={item.option ?? ''}
-                          answerOption={`${index + 1})`}
-                          correct={item.is_correct}
-                        />
-                      ))}
+                          <AnswerCard
+                            key={index}
+                            answer={item.option ?? ""}
+                            answerOption={`${index + 1})`}
+                            correct={item.is_correct}
+                          />
+                        ))}
                   </View>
                   <Pressable
                     style={{

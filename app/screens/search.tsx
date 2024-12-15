@@ -7,9 +7,6 @@ import SearchBox from "@/src/SearchBox";
 import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 
-
-
-
 export default function SearchScreen() {
   const [categories, setCategories] = useState<QuizCategory[]>([]);
   async function fetchCategories() {
@@ -17,13 +14,11 @@ export default function SearchScreen() {
     const res = await api.quizCategoriesGet();
     return res;
   }
-
   useEffect(() => {
     fetchCategories().then((res) => {
       setCategories(res.data);
     });
   }, []);
-
 
   const handlePress = () => {
     console.log("Pressed");
@@ -42,10 +37,10 @@ export default function SearchScreen() {
             {categories.map((item) => (
               <View key={item.id} style={styles.categoryCard}>
                 <CategoryCard
-                  categoryName={item.name ?? ''}
+                  categoryName={item.name ?? ""}
                   onPress={handlePress}
                   numberOfQuestions={1}
-                  imageUrl={item.imageUrl ?? ''}
+                  imageUrl={item.imageUrl ?? ""}
                 />
               </View>
             ))}

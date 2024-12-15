@@ -3,6 +3,7 @@ import { Colors } from "@/constants/Colors";
 import QuizCard from "@/src/components/card/QuizCard";
 import ProfileImage from "@/src/components/profile/ProfileImage";
 import SectionTitle from "@/src/components/text/SectionTitle";
+import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -22,18 +23,16 @@ export default function HomeScreen() {
     router.push(`../quiz/${res.data.id}`);
   }
 
-
   useEffect(() => {
     fetchPopularQuizzes().then((res) => {
       setPopularQuizzes(res.data);
+      console.log(res.data);
     });
   }, []);
-
 
   function handleNavigate(quizId: string) {
     router.push(`../quiz/${quizId}`);
   }
-
 
   return (
     <View style={styles.container}>
@@ -45,29 +44,30 @@ export default function HomeScreen() {
         <ProfileImage />
       </View>
       <View style={styles.randomQuizContainer}>
-
         <View style={{}}>
           <Text style={styles.quickQuizText}>QUICK QUIZ</Text>
           <Text style={styles.startQuizText}>Start Random Quiz</Text>
         </View>
         <TouchableOpacity onPress={fetchRandomQuiz}>
-          <span style={styles.quizIcon}>▶</span>
+          {/* <Text style={styles.quizIcon}>▶</Text> */}
+          <Ionicons name="play-circle-outline" size={40} />
         </TouchableOpacity>
       </View>
       <View style={styles.popularContainer}>
         <ScrollView>
           <SectionTitle style={styles.sectionTitle} sectionTitle="Most Popular" />
-          {popularQuizzes!.map((item) => {
-            return (
-              <QuizCard
-                key={item.id}
-                title={item?.name ?? ''}
-                imageUrl={item.imageUrl ?? ''}
-                onPress={() => handleNavigate(item.id ?? "")}
-                numberOfQuestions={item.questions?.length ?? 0}
-              />
-            );
-          })}
+          {popularQuizzes &&
+            popularQuizzes.map((item) => {
+              return (
+                <QuizCard
+                  key={item.id}
+                  title={item?.name ?? ""}
+                  imageUrl={item.imageUrl ?? ""}
+                  onPress={() => handleNavigate(item.id ?? "")}
+                  numberOfQuestions={item.questions?.length ?? 0}
+                />
+              );
+            })}
         </ScrollView>
       </View>
     </View>
@@ -137,14 +137,4 @@ const styles = StyleSheet.create({
     paddingBottom: 50,
     paddingHorizontal: 10,
   },
-  quizIcon: {
-    backgroundColor: '#fbc5d0',
-    padding: 14,
-    width: 20,
-    height: 20,
-    borderRadius: 100,
-    color: '#5d0d23',
-    fontSize: 16,
-    textAlign: 'center',
-  }
 });
