@@ -23,7 +23,7 @@ export default function QuizCard({
       <View style={styles.infoContainer}>
         <CardTitle cardTitle={title} />
         <Text style={styles.details}>
-          {category} | {numberOfQuestions} Questions
+          {category != null ? `${category} | ` :''}{numberOfQuestions} Questions
         </Text>
       </View>
     </CardContainer>

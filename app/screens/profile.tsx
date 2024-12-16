@@ -12,9 +12,9 @@ import { Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from
 export default function ProfileScreen() {
   const userApi = new UserApi();
 
-  const [user, setUser] = useState<any | undefined>(undefined); // Adjust the type as per your `user` structure
-  const [userStats, setUserStats] = useState<any | undefined>(undefined); // Adjust the type as per your `user` structure
-  const [loading, setLoading] = useState(true); // To track the loading state
+  const [user, setUser] = useState<any | undefined>(undefined);
+  const [userStats, setUserStats] = useState<any | undefined>(undefined); 
+  const [loading, setLoading] = useState(true);
 
   async function getUser() {
     await getUserProfile();
@@ -52,7 +52,6 @@ export default function ProfileScreen() {
   }, []);
 
   if (loading) {
-    // Render a loading indicator while the data is being fetched
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <ProfileUsername
@@ -66,7 +65,6 @@ export default function ProfileScreen() {
   }
 
   if (!user || !userStats) {
-    // Handle the case where the user data couldn't be fetched
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <ProfileUsername
@@ -81,8 +79,8 @@ export default function ProfileScreen() {
 
   return (
     <ScrollView
-      style={styles.scrollView} // Allows vertical scrolling
-      contentContainerStyle={styles.scrollContent} // Ensures proper alignment
+      style={styles.scrollView}
+      contentContainerStyle={styles.scrollContent} 
     >
       <View style={styles.outerContainer}>
         <View style={styles.profileContainer}></View>
@@ -116,7 +114,7 @@ const screenWidth = Dimensions.get("window").width;
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#FF3B30", // Red for sign out
+    backgroundColor: "#FF3B30", 
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 8,
@@ -136,7 +134,7 @@ const styles = StyleSheet.create({
     paddingBottom: 60,
   },
   scrollContent: {
-    alignItems: "center", // Ensures content aligns properly
+    alignItems: "center", 
   },
   profileUsername: {
     alignItems: "center",

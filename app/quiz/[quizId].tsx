@@ -1,11 +1,19 @@
-import { Quiz, QuizApi, SaveQuizResultRequestScoreBreakdownInner } from "@/api/generated";
+import { Quiz, QuizApi, QuizResultsApi, SaveQuizResultRequestScoreBreakdownInner } from "@/api/generated";
 import { Colors } from "@/constants/Colors";
 import AnswerCard from "@/src/components/card/AnswerCard";
 import QuestionCard from "@/src/components/card/QuestionCard";
 import StatusBarMarginLayout from "@/src/components/utils/StatusBarMarginLayout";
+import { getItem } from "@/src/utils/secure_storage";
 import { router, useLocalSearchParams } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
 import { Pressable, Text, View } from "react-native";
+
+function shuffleArray<T>(array: T[]): T[] {
+  return array
+    .map((item) => ({ item, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ item }) => item);
+}
 
 export default function QuizPage() {
   const { quizId } = useLocalSearchParams();
@@ -23,15 +31,24 @@ export default function QuizPage() {
   });
 
   const [isAnswerTimeout, setIsAnswerTimeout] = useState<boolean>(false);
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
 
   useEffect(() => {
     async function getQuizData() {
       const api = new QuizApi();
       try {
         const res = await api.quizWithQuestionsGet(quizId as string);
-        setQuizData(res.data ?? []);
+        const quiz = res.data;
+        if (quiz?.questions) {
+          // Shuffle the answers for each question
+          quiz.questions = quiz.questions.map((question) => ({
+            ...question,
+            answers: shuffleArray(question.answers ?? []),
+          }));
+        }
+        setQuizData(quiz ?? []);
       } catch (e) {
-        return "Error";
+        console.error("Error fetching quiz data:", e);
       }
     }
 
@@ -58,12 +75,14 @@ export default function QuizPage() {
   function handleNextQuestion() {
     if (currentQuestion < (quizData?.questions?.length as number)) {
       setTimer(30);
+      setSelectedAnswer(null); 
       setCurrentQuestion((prev) => prev + 1);
       setIsAnswerTimeout(false);
     }
   }
 
-  function handleAnswer(question_id: string, is_correct: boolean) {
+  function handleAnswer(question_id: string, is_correct: boolean, selectedAnswer: string) {
+    setSelectedAnswer(selectedAnswer); 
     setIsAnswerTimeout(true);
     setTimeout(handleNextQuestion, 2000);
     setResults((prev) => {
@@ -82,6 +101,32 @@ export default function QuizPage() {
       };
     });
   }
+
+  async function saveResults() {
+    const currentUserId = (await getItem("userId")) ?? "";
+    if (currentUserId === "" || results.total_score == null || results.score_breakdown.length === 0)
+      return;
+
+    const api = new QuizResultsApi();
+    try {
+      await api.saveQuizResultPost({
+        userId: currentUserId,
+        totalScore: results.total_score,
+        scoreBreakdown: results.score_breakdown,
+        categoryId: quizData?.category_id ?? "",
+        quizId: quizData?.id,
+      });
+      console.log("Results saved successfully");
+    } catch (e) {
+      console.error("Error saving results:", e);
+    }
+  }
+
+  useEffect(() => {
+    if (currentQuestion >= (quizData?.questions?.length ?? 0)) {
+      saveResults();
+    }
+  }, [currentQuestion]);
 
   if (timer === 0) {
     handleNextQuestion();
@@ -161,28 +206,24 @@ export default function QuizPage() {
                     />
                   </View>
                   <View style={{ flex: 1, width: "85%" }}>
-                    {!isAnswerTimeout
-                      ? quizData!.questions![currentQuestion]!.answers!.map((item, index) => (
-                          <AnswerCard
-                            key={index}
-                            answer={item.option ?? ""}
-                            answerOption={`${index + 1})`}
-                            onPress={() =>
-                              handleAnswer(
-                                quizData!.questions![currentQuestion]!.id!,
-                                item.is_correct ?? false,
-                              )
-                            }
-                          />
-                        ))
-                      : quizData!.questions![currentQuestion]!.answers!.map((item, index) => (
-                          <AnswerCard
-                            key={index}
-                            answer={item.option ?? ""}
-                            answerOption={`${index + 1})`}
-                            correct={item.is_correct}
-                          />
-                        ))}
+                    {quizData!.questions![currentQuestion]!.answers!.map((item, index) => (
+                      <AnswerCard
+                        key={index}
+                        answer={item.option ?? ""}
+                        answerOption={`${index + 1})`}
+                        onPress={() =>
+                          !isAnswerTimeout &&
+                          handleAnswer(
+                            quizData!.questions![currentQuestion]!.id!,
+                            item.is_correct ?? false,
+                            item.option ?? ""
+                          )
+                        }
+                        selected={item.option === selectedAnswer}
+                        correct={item.is_correct}
+                        isAnswerTimeout={isAnswerTimeout}
+                      />
+                    ))}
                   </View>
                   <Pressable
                     style={{

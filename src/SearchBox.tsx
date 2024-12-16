@@ -1,15 +1,27 @@
+import { Colors } from "@/constants/Colors";
 import React from "react";
-import { View, TextInput, StyleSheet } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { StyleSheet, TextInput, View } from "react-native";
 
-export default function SearchBox() {
+interface SearchBoxProps {
+  placeholder: string;
+  value: string;
+  onChangeText: (text: string) => void;
+}
+
+export default function SearchBox({ placeholder, value, onChangeText }: SearchBoxProps) {
   return (
     <View style={styles.container}>
-      <Ionicons name="search" size={20} color="white" style={styles.icon} />
-      <TextInput style={styles.input} placeholder="Search" placeholderTextColor="white" />
+      <TextInput
+        style={styles.input}
+        placeholder={placeholder}
+        placeholderTextColor={Colors.light.text}
+        value={value}
+        onChangeText={onChangeText}
+      />
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {

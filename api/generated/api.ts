@@ -206,10 +206,10 @@ export interface Quiz {
     'imageUrl'?: string;
     /**
      * 
-     * @type {QuizCategoryId}
+     * @type {string}
      * @memberof Quiz
      */
-    'category_id'?: QuizCategoryId;
+    'category_id'?: string;
     /**
      * 
      * @type {number}
@@ -247,25 +247,6 @@ export interface QuizCategory {
      * @memberof QuizCategory
      */
     'imageUrl'?: string;
-}
-/**
- * 
- * @export
- * @interface QuizCategoryId
- */
-export interface QuizCategoryId {
-    /**
-     * 
-     * @type {string}
-     * @memberof QuizCategoryId
-     */
-    'id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof QuizCategoryId
-     */
-    'name'?: string;
 }
 /**
  * 

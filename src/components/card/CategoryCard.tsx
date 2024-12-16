@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import CardTitle from "../text/CardTitle";
 import CardContainer from "./CardContainer";
 import CardImage from "./ImageCard";
@@ -8,19 +8,16 @@ export default function CategoryCard({
   categoryName,
   imageUrl,
   onPress,
-  numberOfQuestions,
 }: {
   categoryName: string;
   imageUrl: string;
   onPress: () => void;
-  numberOfQuestions: number;
 }) {
   return (
     <CardContainer onPress={onPress}>
       <CardImage imageUrl={imageUrl} />
       <View style={styles.infoContainer}>
         <CardTitle cardTitle={categoryName} />
-        <Text style={styles.details}>{numberOfQuestions} Questions</Text>
       </View>
     </CardContainer>
   );
