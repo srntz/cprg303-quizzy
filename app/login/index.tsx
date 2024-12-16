@@ -29,7 +29,7 @@ export default function LoginPage() {
     let login;
     try {
       login = await authApi.loginPost({ email: formState.email });
-
+  
       console.log(login.data);
     } catch (e) {
       console.log(`error: ${e}`);
@@ -43,11 +43,16 @@ export default function LoginPage() {
     const userId = (login.data as ILoginData).id;
     await saveItem("userId", userId);
     const userData = await userApi.userProfileGet(userId);
-    setCurrentUser(userData.data);
-    saveItem("avatar", userData.data.avatar);
-    saveItem("username", userData.data.username);
-    saveItem("email", userData.data.email);
-    router.replace("/screens");
+    if(userData != null){
+
+      saveItem("avatar", userData!.data!.avatar!);
+      saveItem("username", userData!.data!.username!);
+      saveItem("email", userData!.data!.email!);
+      router.replace("/screens");
+    }
+  
+
+
   }
 
   return (

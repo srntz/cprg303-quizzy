@@ -6,12 +6,8 @@ import { useLocalSearchParams } from "expo-router";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 export default function LeaderBoardByCategory() {
-    // Retrieve the leaderboard data from query parameters
     const { leaderboard } = useLocalSearchParams();
 
-
-    
-    // Parse the leaderboard JSON string into an object
     const parsedLeaderboard: LeaderboardsInner | null = leaderboard ? JSON.parse(leaderboard as string) : null;
 
     if (!parsedLeaderboard) {

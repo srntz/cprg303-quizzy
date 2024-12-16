@@ -24,7 +24,7 @@ export default function Leaderboard() {
 
   if (loading)
     return (
-      <View>
+      <View  style={[styles.container, styles.center]}>
         <Text>Loading....</Text>
       </View>
     );
@@ -49,8 +49,8 @@ export default function Leaderboard() {
             }
           >
             <View>
-              <LeadCategory leadCategory={leaderboard.category ?? ""} />
-              <TopUsers topPlayers={leaderboard.top_players?.slice(0, 3) ?? []} />
+              <LeadCategory key={leaderboard.id} leadCategory={leaderboard.category ?? ""} />
+              <TopUsers leaderboardId={leaderboard.id ?? ''} topPlayers={leaderboard.top_players?.slice(0, 3) ?? []} />
             </View>
           </TouchableOpacity>
         ))}
@@ -64,6 +64,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.light.accent,
     alignItems: "center",
+  },
+  center: {
+    justifyContent: 'center'
   },
   headerContainer: {
     marginTop: 30,

@@ -481,7 +481,6 @@ components:
                   type: string
                 avatar:
                   type: string
-
     Quiz:
       type: object
       properties:
@@ -493,12 +492,7 @@ components:
           type: string
           format: uri
         category_id:
-          type: object
-          properties:
-            id:
-              type: string
-            name:
-              type: string
+          type: string
         play_count:
           type: integer
         questions:

@@ -5,18 +5,20 @@ import CardContainer from "../card/CardContainer";
 import ProfileUsername from "../profile/ProfileUsername";
 
 interface TopUsersProps {
+  leaderboardId: string,
   topPlayers: LeaderboardsInnerTopPlayersInner[]; // Make topPlayers optional
 }
 
 
-export default function TopUsers({ topPlayers }: TopUsersProps) {
+export default function TopUsers({ topPlayers, leaderboardId }: TopUsersProps) {
   return (
     <CardContainer style={styles.contaier} disabled={true}>
       {topPlayers.map((player, index) => {
         console.log(player);
         return (
           <ProfileUsername
-            rank={index+1}
+            key={`${leaderboardId}_${player.username}`}
+            rank={index + 1}
             imageSize={60}
             fontSize={12}
             username={player.username ?? ''}

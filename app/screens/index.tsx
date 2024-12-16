@@ -5,11 +5,13 @@ import ProfileImage from "@/src/components/profile/ProfileImage";
 import SectionTitle from "@/src/components/text/SectionTitle";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
+import { getItem } from "expo-secure-store";
 import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function HomeScreen() {
   const [popularQuizzes, setPopularQuizzes] = useState<Quiz[]>();
+  const [userName, setUserName] = useState("");
 
   async function fetchPopularQuizzes() {
     const api = new QuizApi();
@@ -23,7 +25,12 @@ export default function HomeScreen() {
     router.push(`../quiz/${res.data.id}`);
   }
 
+  async function getUsername(){
+  setUserName( await  getItem("username") ?? "");
+  }
+
   useEffect(() => {
+    getUsername();
     fetchPopularQuizzes().then((res) => {
       setPopularQuizzes(res.data);
       console.log(res.data);
@@ -39,7 +46,7 @@ export default function HomeScreen() {
       <View style={styles.mainContainer}>
         <View style={styles.welcomeContainer}>
           <Text style={styles.welcomeText}> WELCOME </Text>
-          <Text style={styles.nameText}>John Doe</Text>
+          <Text style={styles.nameText}>{userName}</Text>
         </View>
         <ProfileImage />
       </View>

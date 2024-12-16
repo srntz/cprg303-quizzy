@@ -11,12 +11,11 @@ import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
 import "react-native-reanimated";
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
-  const router = useRouter(); // Use the router to navigate programmatically
+  const router = useRouter(); 
   const [loaded] = useFonts({ Rubik_600SemiBold });
   const [customSplashScreen, setCustomSplashScreen] = useState(false);
 

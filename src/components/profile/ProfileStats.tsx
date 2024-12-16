@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 interface StatCardProps {
     points: number;
@@ -8,7 +8,6 @@ interface StatCardProps {
     bestCategory: string;
 }
 
-const screenWidth = Dimensions.get("window").width;
 
 const StatCard: React.FC<StatCardProps> = ({ points, worldRank, bestCategory }) => {
     return (

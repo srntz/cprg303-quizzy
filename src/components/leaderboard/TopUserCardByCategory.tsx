@@ -9,7 +9,7 @@ interface TopUserCardByCategoryProps {
 
 export default function TopUserCardByCategory({ player }: TopUserCardByCategoryProps) {
     return (
-        <View style={styles.container}>
+        <View key={player.userId} style={styles.container}>
             <Text style={styles.rank}>{player.rank}</Text>
             <Image source={{ uri: player.avatar }} style={styles.avatar} />
             <View style={styles.detailsContainer}>
