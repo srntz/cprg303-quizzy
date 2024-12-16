@@ -1,4 +1,4 @@
-import { Quiz, QuizApi, QuizResultsApi, SaveQuizResultRequestScoreBreakdownInner } from "@/api/generated";
+import { Quiz, SaveQuizResultRequestScoreBreakdownInner } from "@/api/generated";
 import { Colors } from "@/constants/Colors";
 import AnswerCard from "@/src/components/card/AnswerCard";
 import QuestionCard from "@/src/components/card/QuestionCard";
@@ -7,16 +7,15 @@ import { getItem } from "@/src/utils/secure_storage";
 import { router, useLocalSearchParams } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
 import { Pressable, Text, View } from "react-native";
-
-function shuffleArray<T>(array: T[]): T[] {
-  return array
-    .map((item) => ({ item, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ item }) => item);
-}
+import QuizEndScreen from "@/src/components/quiz/QuizEndScreen";
+import { getQuizData } from "@/src/services/getQuizData";
+import { saveQuizResults } from "@/src/services/saveQuizResults";
+import QuizHeader from "@/src/components/quiz/QuizHeader";
+import QuizTimer from "@/src/components/quiz/QuizTimer";
 
 export default function QuizPage() {
   const { quizId } = useLocalSearchParams();
+
   const interval = useRef<ReturnType<typeof setInterval> | undefined>();
 
   const [timer, setTimer] = useState<number>(30);
@@ -34,28 +33,19 @@ export default function QuizPage() {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
 
   useEffect(() => {
-    async function getQuizData() {
-      const api = new QuizApi();
-      try {
-        const res = await api.quizWithQuestionsGet(quizId as string);
-        const quiz = res.data;
-        if (quiz?.questions) {
-          // Shuffle the answers for each question
-          quiz.questions = quiz.questions.map((question) => ({
-            ...question,
-            answers: shuffleArray(question.answers ?? []),
-          }));
-        }
-        setQuizData(quiz ?? []);
-      } catch (e) {
-        console.error("Error fetching quiz data:", e);
-      }
+    async function fetchQuizData() {
+      const quiz = await getQuizData(quizId as string);
+      setQuizData(quiz);
     }
 
-    getQuizData();
+    fetchQuizData();
   }, []);
 
   useEffect(() => {
+    if (currentQuestion >= (quizData?.questions?.length ?? 0)) {
+      saveResults();
+    }
+
     if (currentQuestion < (quizData?.questions?.length as number) || currentQuestion === 0) {
       if (interval.current) {
         clearInterval(interval.current as ReturnType<typeof setInterval>);
@@ -75,14 +65,14 @@ export default function QuizPage() {
   function handleNextQuestion() {
     if (currentQuestion < (quizData?.questions?.length as number)) {
       setTimer(30);
-      setSelectedAnswer(null); 
+      setSelectedAnswer(null);
       setCurrentQuestion((prev) => prev + 1);
       setIsAnswerTimeout(false);
     }
   }
 
   function handleAnswer(question_id: string, is_correct: boolean, selectedAnswer: string) {
-    setSelectedAnswer(selectedAnswer); 
+    setSelectedAnswer(selectedAnswer);
     setIsAnswerTimeout(true);
     setTimeout(handleNextQuestion, 2000);
     setResults((prev) => {
@@ -107,26 +97,14 @@ export default function QuizPage() {
     if (currentUserId === "" || results.total_score == null || results.score_breakdown.length === 0)
       return;
 
-    const api = new QuizResultsApi();
-    try {
-      await api.saveQuizResultPost({
-        userId: currentUserId,
-        totalScore: results.total_score,
-        scoreBreakdown: results.score_breakdown,
-        categoryId: quizData?.category_id ?? "",
-        quizId: quizData?.id,
-      });
-      console.log("Results saved successfully");
-    } catch (e) {
-      console.error("Error saving results:", e);
-    }
+    await saveQuizResults({
+      userId: currentUserId,
+      totalScore: results.total_score,
+      scoreBreakdown: results.score_breakdown,
+      categoryId: quizData?.category_id ?? "",
+      quizId: quizData?.id,
+    });
   }
-
-  useEffect(() => {
-    if (currentQuestion >= (quizData?.questions?.length ?? 0)) {
-      saveResults();
-    }
-  }, [currentQuestion]);
 
   if (timer === 0) {
     handleNextQuestion();
@@ -138,53 +116,8 @@ export default function QuizPage() {
         {currentQuestion < (quizData?.questions?.length as number) || currentQuestion === 0 ? (
           <>
             <View style={{ flex: 1, width: "100%", paddingHorizontal: 12 }}>
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  height: "20%",
-                  alignItems: "center",
-                  paddingVertical: 5,
-                  marginTop: 10,
-                }}
-              >
-                <Pressable
-                  onPress={() => {
-                    router.back();
-                  }}
-                  style={{
-                    backgroundColor: "white",
-                    height: 30,
-                    width: 70,
-                    justifyContent: "center",
-                    borderRadius: 10,
-                  }}
-                >
-                  <Text style={{ color: "black", textAlign: "center", fontWeight: "semibold" }}>
-                    Back
-                  </Text>
-                </Pressable>
-                <Text style={{ flex: 1, textAlign: "center", color: "white", fontWeight: "bold" }}>
-                  {quizData?.name}
-                </Text>
-                <View style={{ width: 70 }}></View>
-              </View>
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: "center",
-                  gap: 4,
-                }}
-              >
-                <Text style={{ textAlign: "center", fontSize: 15, color: "white" }}>
-                  Remaining Time
-                </Text>
-                <Text
-                  style={{ textAlign: "center", fontSize: 35, fontWeight: "bold", color: "white" }}
-                >
-                  {timer}
-                </Text>
-              </View>
+              <QuizHeader quizName={quizData?.name || ""} onNavigateBack={() => router.back()} />
+              {quizData && <QuizTimer timer={timer} />}
             </View>
             <View
               style={{
@@ -216,7 +149,7 @@ export default function QuizPage() {
                           handleAnswer(
                             quizData!.questions![currentQuestion]!.id!,
                             item.is_correct ?? false,
-                            item.option ?? ""
+                            item.option ?? "",
                           )
                         }
                         selected={item.option === selectedAnswer}
@@ -246,46 +179,10 @@ export default function QuizPage() {
             </View>
           </>
         ) : (
-          <>
-            <View style={{ flex: 1, alignItems: "center", justifyContent: "center", gap: 70 }}>
-              <View style={{ alignItems: "center", justifyContent: "center", gap: 15 }}>
-                <Text
-                  style={{
-                    color: "white",
-                    width: 300,
-                    fontSize: 30,
-                    fontWeight: "bold",
-                    textAlign: "center",
-                  }}
-                >
-                  You have completed the quiz!
-                </Text>
-                <Text style={{ color: "white", fontSize: 20, fontWeight: "semibold" }}>
-                  Score: {results.total_score}
-                </Text>
-              </View>
-              <Pressable
-                style={{
-                  backgroundColor: "white",
-                  width: 200,
-                  height: 50,
-                  borderRadius: 10,
-                  justifyContent: "center",
-                }}
-                onPress={() => router.replace("../screens")}
-              >
-                <Text
-                  style={{
-                    textAlign: "center",
-                    fontWeight: "bold",
-                    fontSize: 18,
-                  }}
-                >
-                  Continue
-                </Text>
-              </Pressable>
-            </View>
-          </>
+          <QuizEndScreen
+            score={results.total_score}
+            onContinue={() => router.replace("../screens")}
+          />
         )}
       </View>
     </StatusBarMarginLayout>

@@ -10,12 +10,13 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
 import "react-native-reanimated";
+import { Colors } from "@/constants/Colors";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
-  const router = useRouter(); 
+  const router = useRouter();
   const [loaded] = useFonts({ Rubik_600SemiBold });
   const [customSplashScreen, setCustomSplashScreen] = useState(false);
 
@@ -58,6 +59,15 @@ export default function RootLayout() {
             <Stack.Screen name={"login"} options={{ headerShown: false }} />
             <Stack.Screen name={"screens"} options={{ headerShown: false }} />
             <Stack.Screen name={"quiz"} options={{ headerShown: false }} />
+            <Stack.Screen
+              name={"leaderboardByCategory"}
+              options={{
+                headerShown: true,
+                headerTitle: "",
+                headerShadowVisible: false,
+                headerStyle: { backgroundColor: Colors.light.accent },
+              }}
+            />
           </Stack>
           <StatusBar style="auto" />
         </ThemeProvider>

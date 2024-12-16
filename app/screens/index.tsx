@@ -25,8 +25,8 @@ export default function HomeScreen() {
     router.push(`../quiz/${res.data.id}`);
   }
 
-  async function getUsername(){
-  setUserName( await  getItem("username") ?? "");
+  async function getUsername() {
+    setUserName((await getItem("username")) ?? "");
   }
 
   useEffect(() => {
@@ -50,16 +50,15 @@ export default function HomeScreen() {
         </View>
         <ProfileImage />
       </View>
-      <View style={styles.randomQuizContainer}>
-        <View style={{}}>
-          <Text style={styles.quickQuizText}>QUICK QUIZ</Text>
-          <Text style={styles.startQuizText}>Start Random Quiz</Text>
-        </View>
-        <TouchableOpacity onPress={fetchRandomQuiz}>
-          {/* <Text style={styles.quizIcon}>▶</Text> */}
+      <TouchableOpacity onPress={fetchRandomQuiz}>
+        <View style={styles.randomQuizContainer}>
+          <View style={{}}>
+            <Text style={styles.quickQuizText}>QUICK QUIZ</Text>
+            <Text style={styles.startQuizText}>Start Random Quiz</Text>
+          </View>
           <Ionicons name="play-circle-outline" size={40} />
-        </TouchableOpacity>
-      </View>
+        </View>
+      </TouchableOpacity>
       <View style={styles.popularContainer}>
         <ScrollView style={{ marginBottom: 30 }}>
           <SectionTitle style={styles.sectionTitle} sectionTitle="Most Popular" />

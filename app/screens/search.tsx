@@ -11,9 +11,9 @@ import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-
 export default function SearchScreen() {
   const [categories, setCategories] = useState<QuizCategory[]>([]);
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
-  const [searchQuery, setSearchQuery] = useState<string>(""); 
-  const [filteredItems, setFilteredItems] = useState<any[]>([]); 
-  const [selectedCategory, setSelectedCategory] = useState<QuizCategory | null>(null); 
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [filteredItems, setFilteredItems] = useState<any[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<QuizCategory | null>(null);
 
   // Fetch categories from API
   async function fetchCategories() {
@@ -38,20 +38,18 @@ export default function SearchScreen() {
   }, []);
 
   function handleNavigate(quizId: string) {
-      router.push(`../quiz/${quizId}`);
-    }
+    router.push(`../quiz/${quizId}`);
+  }
 
   // Filter items (categories or quizzes) based on search query
   useEffect(() => {
     const lowercasedQuery = searchQuery.toLowerCase();
     if (selectedCategory) {
-      const filtered = quizzes.filter((quiz) =>
-        quiz.name?.toLowerCase().includes(lowercasedQuery)
-      );
+      const filtered = quizzes.filter((quiz) => quiz.name?.toLowerCase().includes(lowercasedQuery));
       setFilteredItems(filtered);
     } else {
       const filtered = categories.filter((category) =>
-        category.name?.toLowerCase().includes(lowercasedQuery)
+        category.name?.toLowerCase().includes(lowercasedQuery),
       );
       setFilteredItems(filtered);
     }
@@ -62,15 +60,15 @@ export default function SearchScreen() {
     setSelectedCategory(category);
     fetchQuizzes(category.id!).then((res) => {
       setQuizzes(res.data);
-      setFilteredItems(res.data); 
-      setSearchQuery(""); 
+      setFilteredItems(res.data);
+      setSearchQuery("");
     });
   };
 
   // Handle returning to category view
   const handleBackToCategories = () => {
     setSelectedCategory(null);
-    setFilteredItems(categories); 
+    setFilteredItems(categories);
     setSearchQuery("");
   };
 
@@ -104,7 +102,7 @@ export default function SearchScreen() {
                       imageUrl={quiz.imageUrl}
                       numberOfQuestions={quiz.questions?.length ?? 0}
                       category={quiz.category_id ?? ""}
-                      onPress={() => handleNavigate(quiz.id)} 
+                      onPress={() => handleNavigate(quiz.id)}
                     />
                   </View>
                 ))}
@@ -119,7 +117,6 @@ export default function SearchScreen() {
                     <CategoryCard
                       categoryName={category.name ?? ""}
                       onPress={() => handleCategorySelect(category)}
-                     
                       imageUrl={category.imageUrl ?? ""}
                     />
                   </View>
@@ -156,7 +153,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 2, 
+    elevation: 2,
   },
   contentContainer: {
     width: "100%",
@@ -169,10 +166,14 @@ const styles = StyleSheet.create({
     marginBottom: 100,
   },
   backButton: {
-    color: Colors.light.icon,
-    fontSize: 16,
+    color: "white",
+    fontSize: 14,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 20,
+    backgroundColor: Colors.light.accent,
+    width: "44%",
+    padding: 10,
+    borderRadius: 8,
   },
   categoryCardContainer: {
     flexDirection: "row",
